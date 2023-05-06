@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ECharts</title>
+    <!-- 全局引入 ECharts 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+</head>
+<body>
+<!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<!--高度宽度是必要条件，如果不设置，图表是不会出现的，被压缩为0-->
+<script type="text/javascript">
+    // import * as echarts from 'echarts';
+    // 基于准备好的dom，初始化echarts实例
+    let myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    let option = {
+        title: {
+            text: 'my echarts'
+        },
+        tooltip: {},
+        // 设置 legend，包含两个 data，分别对应两条线的名称
+        legend: {
+            data: ['蓝线', '绿线']
+        },
+        xAxis: {
+            data: ['A', 'B', 'C', 'D', 'E']
+        },
+        yAxis: {},
+        // 设置 series，分别设置两个数据系列的名称（name）、数据（data）、线条颜色（lineStyle）等属性
+        series: [
+            {
+                name: '蓝线',
+                data: [10, 22, 28, 43, 49],
+                type: 'line',
+                stack: 'x',
+                lineStyle: {
+                    color: 'blue'
+                }
+            },
+            {
+                name: '绿线',
+                data: [5, 4, 3, 5, 10],
+                type: 'line',
+                stack: 'x',
+                lineStyle: {
+                    color: 'green'
+                }
+            }
+        ]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>
