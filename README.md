@@ -1,3 +1,3 @@
 # HelloHaoWu-Fresh-product-traceability-management-system
-V1.0
+V1.0.0
 
