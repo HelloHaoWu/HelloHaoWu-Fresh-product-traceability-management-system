@@ -1,0 +1,1108 @@
+2023-05-07 23:47:09.937852: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-07 23:47:09.938885: wfastcgi.py 3.0.0 initialized
+2023-05-07 23:51:19.815909: wfastcgi.py exiting because djangoProject\settings.py has changed, matching .*((\.py)|(\.config))$
+2023-05-07 23:51:19.816911: Running on_exit tasks
+2023-05-07 23:51:25.404642: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-07 23:51:25.405614: wfastcgi.py 3.0.0 initialized
+2023-05-08 00:00:09.994473: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 00:00:09.994473: wfastcgi.py 3.0.0 initialized
+2023-05-08 00:10:21.135094: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 00:10:21.135094: wfastcgi.py 3.0.0 initialized
+2023-05-08 00:15:35.697598: Running on_exit tasks
+2023-05-08 00:15:35.697598: wfastcgi.py 3.0.0 closed
+2023-05-08 06:07:43.057072: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 06:07:43.057072: wfastcgi.py 3.0.0 initialized
+2023-05-08 10:34:07.126475: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 10:34:07.127459: wfastcgi.py 3.0.0 initialized
+2023-05-08 10:39:21.565931: Running on_exit tasks
+2023-05-08 10:39:21.565931: wfastcgi.py 3.0.0 closed
+2023-05-08 10:40:24.472240: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 10:40:24.472240: wfastcgi.py 3.0.0 initialized
+2023-05-08 10:51:14.389250: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 10:51:14.389250: wfastcgi.py 3.0.0 initialized
+2023-05-08 12:22:58.128426: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:22:58.128426: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:22:58.128426: Running on_exit tasks
+2023-05-08 12:22:58.128426: wfastcgi.py 3.0.0 closed
+2023-05-08 12:22:59.253434: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:22:59.253434: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:22:59.253434: Running on_exit tasks
+2023-05-08 12:22:59.253434: wfastcgi.py 3.0.0 closed
+2023-05-08 12:23:18.800310: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:23:18.815948: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:23:18.815948: Running on_exit tasks
+2023-05-08 12:23:18.815948: wfastcgi.py 3.0.0 closed
+2023-05-08 12:23:19.909685: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:23:19.909685: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:23:19.909685: Running on_exit tasks
+2023-05-08 12:23:19.909685: wfastcgi.py 3.0.0 closed
+2023-05-08 12:23:21.081564: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:23:21.081564: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:23:21.081564: Running on_exit tasks
+2023-05-08 12:23:21.081564: wfastcgi.py 3.0.0 closed
+2023-05-08 12:23:21.972263: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:23:21.972263: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:23:21.972263: Running on_exit tasks
+2023-05-08 12:23:21.972263: wfastcgi.py 3.0.0 closed
+2023-05-08 12:24:39.034684: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:24:39.034684: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:24:39.034684: Running on_exit tasks
+2023-05-08 12:24:39.034684: wfastcgi.py 3.0.0 closed
+2023-05-08 12:24:39.894250: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:24:39.894250: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:24:39.894250: Running on_exit tasks
+2023-05-08 12:24:39.894250: wfastcgi.py 3.0.0 closed
+2023-05-08 12:24:42.035161: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:24:42.035161: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:24:42.035161: Running on_exit tasks
+2023-05-08 12:24:42.035161: wfastcgi.py 3.0.0 closed
+2023-05-08 12:24:42.894252: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:24:42.894252: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:24:42.894252: Running on_exit tasks
+2023-05-08 12:24:42.894252: wfastcgi.py 3.0.0 closed
+2023-05-08 12:30:12.222249: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:30:12.222249: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:30:12.222249: Running on_exit tasks
+2023-05-08 12:30:12.222249: wfastcgi.py 3.0.0 closed
+2023-05-08 12:30:13.081583: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:30:13.081583: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:30:13.081583: Running on_exit tasks
+2023-05-08 12:30:13.081583: wfastcgi.py 3.0.0 closed
+2023-05-08 12:32:09.800304: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:32:09.800304: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:32:09.800304: Running on_exit tasks
+2023-05-08 12:32:09.800304: wfastcgi.py 3.0.0 closed
+2023-05-08 12:32:10.737832: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:32:10.737832: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:32:10.737832: Running on_exit tasks
+2023-05-08 12:32:10.737832: wfastcgi.py 3.0.0 closed
+2023-05-08 12:32:30.659686: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:32:30.659686: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:32:30.659686: Running on_exit tasks
+2023-05-08 12:32:30.659686: wfastcgi.py 3.0.0 closed
+2023-05-08 12:32:31.589368: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:32:31.590343: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:32:31.591325: Running on_exit tasks
+2023-05-08 12:32:31.591325: wfastcgi.py 3.0.0 closed
+2023-05-08 12:32:47.894243: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 12:32:47.894243: wfastcgi.py 3.0.0 initialized
+2023-05-08 12:32:57.223234: wfastcgi.py exiting because djangoProject\settings.py has changed, matching .*((\.py)|(\.config))$
+2023-05-08 12:32:57.223234: Running on_exit tasks
+2023-05-08 12:33:01.894819: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:33:01.894819: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:33:01.894819: Running on_exit tasks
+2023-05-08 12:33:01.894819: wfastcgi.py 3.0.0 closed
+2023-05-08 12:35:07.519240: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 12:35:07.519240: wfastcgi.py 3.0.0 initialized
+2023-05-08 12:35:16.722897: wfastcgi.py exiting because djangoProject\settings.py has changed, matching .*((\.py)|(\.config))$
+2023-05-08 12:35:16.722897: Running on_exit tasks
+2023-05-08 12:35:41.050336: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:35:41.050336: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:35:41.050336: Running on_exit tasks
+2023-05-08 12:35:41.050336: wfastcgi.py 3.0.0 closed
+2023-05-08 12:35:52.987826: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:35:52.987826: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:35:52.987826: Running on_exit tasks
+2023-05-08 12:35:52.987826: wfastcgi.py 3.0.0 closed
+2023-05-08 12:35:59.495663: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:35:59.498371: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:35:59.498441: Running on_exit tasks
+2023-05-08 12:35:59.499207: wfastcgi.py 3.0.0 closed
+2023-05-08 12:38:24.925744: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:38:24.925744: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:38:24.925744: Running on_exit tasks
+2023-05-08 12:38:24.925744: wfastcgi.py 3.0.0 closed
+2023-05-08 12:39:29.347261: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:39:29.347261: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:39:29.347261: Running on_exit tasks
+2023-05-08 12:39:29.347261: wfastcgi.py 3.0.0 closed
+2023-05-08 12:39:43.378449: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:39:43.378449: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:39:43.378449: Running on_exit tasks
+2023-05-08 12:39:43.378449: wfastcgi.py 3.0.0 closed
+2023-05-08 12:42:58.675330: Error occurred while reading WSGI handler:
+
+Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+
+
+StdOut: 
+
+StdErr: 
+2023-05-08 12:42:58.675330: Unhandled exception in wfastcgi.py: Traceback (most recent call last):
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 791, in main
+    env, handler = read_wsgi_handler(response.physical_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 633, in read_wsgi_handler
+    handler = get_wsgi_handler(os.getenv("WSGI_HANDLER"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\inetpub\wwwroot\djangohomework\wfastcgi.py", line 605, in get_wsgi_handler
+    handler = handler()
+              ^^^^^^^^^
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\core\wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Administrator\Envs\djangohomework\Lib\site-packages\django\apps\registry.py", line 83, in populate
+    raise RuntimeError("populate() isn't reentrant")
+RuntimeError: populate() isn't reentrant
+2023-05-08 12:42:58.675330: Running on_exit tasks
+2023-05-08 12:42:58.675330: wfastcgi.py 3.0.0 closed
+2023-05-08 12:43:21.800306: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 12:43:21.800306: wfastcgi.py 3.0.0 initialized
+2023-05-08 12:43:32.878440: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 12:43:32.878440: wfastcgi.py 3.0.0 initialized
+2023-05-08 12:43:33.440952: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 12:43:33.440952: wfastcgi.py 3.0.0 initialized
+2023-05-08 12:48:47.284680: Running on_exit tasks
+2023-05-08 12:48:47.284680: wfastcgi.py 3.0.0 closed
+2023-05-08 13:06:47.925312: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 13:06:47.925312: wfastcgi.py 3.0.0 initialized
+2023-05-08 13:06:49.128438: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 13:06:49.128438: wfastcgi.py 3.0.0 initialized
+2023-05-08 13:06:49.565941: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 13:06:49.565941: wfastcgi.py 3.0.0 initialized
+2023-05-08 13:06:49.722247: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 13:06:49.722247: wfastcgi.py 3.0.0 initialized
+2023-05-08 13:06:50.112811: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 13:06:50.112811: wfastcgi.py 3.0.0 initialized
+2023-05-08 13:16:43.115710: Running on_exit tasks
+2023-05-08 13:16:43.116717: wfastcgi.py 3.0.0 closed
+2023-05-08 13:27:30.690937: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 13:27:30.690937: wfastcgi.py 3.0.0 initialized
+2023-05-08 13:38:20.370620: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 13:38:20.370620: wfastcgi.py 3.0.0 initialized
+2023-05-08 15:20:48.019262: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 15:20:48.019262: wfastcgi.py 3.0.0 initialized
+2023-05-08 15:47:48.315958: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 15:47:48.315958: wfastcgi.py 3.0.0 initialized
+2023-05-08 15:48:07.784707: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 15:48:07.784707: wfastcgi.py 3.0.0 initialized
+2023-05-08 15:53:22.320797: Running on_exit tasks
+2023-05-08 15:53:22.320797: wfastcgi.py 3.0.0 closed
+2023-05-08 16:04:11.425309: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 16:04:11.425309: wfastcgi.py 3.0.0 initialized
+2023-05-08 16:13:49.956579: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 16:13:49.956579: wfastcgi.py 3.0.0 initialized
+2023-05-08 16:24:23.300318: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 16:24:23.300318: wfastcgi.py 3.0.0 initialized
+2023-05-08 16:29:37.769216: Running on_exit tasks
+2023-05-08 16:29:37.769216: wfastcgi.py 3.0.0 closed
+2023-05-08 16:35:30.956563: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 16:35:30.956563: wfastcgi.py 3.0.0 initialized
+2023-05-08 17:11:11.737809: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 17:11:11.737809: wfastcgi.py 3.0.0 initialized
+2023-05-08 17:11:13.847251: wfastcgi.py will restart when files in C:\inetpub\wwwroot\djangohomework\ are changed: .*((\.py)|(\.config))$
+2023-05-08 17:11:13.847251: wfastcgi.py 3.0.0 initialized
