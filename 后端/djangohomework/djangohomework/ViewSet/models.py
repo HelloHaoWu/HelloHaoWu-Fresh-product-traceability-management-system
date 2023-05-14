@@ -14,20 +14,28 @@ from django.db import models
 class WareHouse(models.Model):
     '''
     仓库
+    仓库编号 WareHouse_ID 主键
+    仓库名称 WareHouse_Name
+    仓库地址 WareHouse_Address
     '''
-    pass
+    WareHouse_ID = models.IntegerField(primary_key=True,null=False)
+    WareHouse_Name = models.CharField(max_length=256)
+    WareHouse_Address = models.CharField(max_length=256)
 
 class Supplier(models.Model):
     '''
     供应商
+    供应商编号 Supplier_ID  主键
+    供应商名称 Supplier_Name
     '''
-    pass
+    Supplier_ID = models.IntegerField(primary_key=True,null=False)
+    Supplier_Name = models.CharField(max_length=256)
 
 class Product(models.Model):
     '''
-    产品信息
-    产品编号 Product_id 主键
-    产品名称 Product_name
+    产品
+    产品编号 Product_ID 主键
+    产品名称 Product_Name
     '''
     Product_ID = models.IntegerField(primary_key=True,null=False)
     Product_Name = models.CharField(max_length=256)
@@ -133,6 +141,29 @@ class Delivery(models.Model):
 
 class ProductBatch(models.Model):
     '''
-    产品批次
+    产品批次 
+    产品批次编号 ProductBatch_ID 
+    产品编号 Product_ID 外键 参照：产品.产品编号
+    仓库编号 WareHouse_ID 外键 参照：仓库.仓库编号
+    供应商编号 Supplier_ID 外键 参照：供应商.供应商编号
+    批次当前库存 ProductBatch_Current_Inventory Float类型，保留3位小数【这边是和 订单明细 相符】
+    批次生产时间 ProductBatch_Production_Time
+    产地 ProductBatch_Production_Place
+    过期时间 ProductBatch_Expiration_Time
+    入库时间 ProductBatch_Warehousing_Time
+    供应时间 ProductBatch_Supply_Time
+    供应量 ProductBatch_Supply_Amount Float类型，保留3位小数【这边是和 订单明细 相符】
+    供应地址 ProductBatch_Supply_Address
     '''
-    pass
+    ProductBatch_ID = models.IntegerField(primary_key=True, null=False)
+    Product_ID = models.IntegerField(to=Product,to_field="Product_ID", on_delete=models.CASCADE)
+    WareHouse_ID = models.IntegerField(to=WareHouse,to_field="WareHouse_ID", on_delete=models.CASCADE)
+    Supplier_ID = models.IntegerField(to=Supplier,to_field="Supplier_ID", on_delete=models.CASCADE)
+    ProductBatch_Current_Inventory = models.FloatField(default=0,decimal_places=3)
+    ProductBatch_Production_Time = models.DateTimeField(null=True,blank=True)
+    ProductBatch_Production_Place = models.CharField(max_length=256)
+    ProductBatch_Expiration_Time = models.DateTimeField(null=True,blank=True)
+    ProductBatch_Warehousing_Time = models.DateTimeField(null=True,blank=True)
+    ProductBatch_Supply_Time = models.DateTimeField(null=True,blank=True)
+    ProductBatch_Supply_Amount = models.FloatField(default=0,decimal_places=3)
+    ProductBatch_Supply_Address = models.CharField(max_length=256)
