@@ -1,13 +1,93 @@
 <template>
-  <h1>这里是分界面2</h1>
+  <div class = 'orderInform'><strong>订单desu</strong></div>
+  <el-card class = 'orderTable'>
+    <el-table
+        :data="tableData"
+        :default-sort="{ prop: 'date', order: 'descending' }"
+        style="width: 100%"
+    >
+      <el-table-column prop="numberOfOrder" label="订单编号" width="180" sortable/>
+      <el-table-column prop="numberOfDelivery" label="配送编号" width="180" sortable/>
+      <el-table-column prop="numberOfUser" label="用户编号" width="180" sortable/>
+      <el-table-column prop="addressOfUser" label="用户地址" width="180" sortable/>
+      <el-table-column prop="lastestTime" label="最晚送达时间/送达时间" width="180" sortable/>
+      <el-table-column prop="numberOfVan" label="车辆编号" width="180" sortable/>
+      <el-table-column prop="realLocation" label="实时位置" width="180" sortable/>
+      <el-table-column prop="statusOfOrder" label="订单状态" width="180"  sortable/>
+
+    </el-table>
+  </el-card>
 </template>
 
-<script>
-export default {
-  name: "manage-2"
-}
+<style>
+  .orderTable{
+    color: #111111;
+    height: 700px;
+    margin-top: 70px;
+    /*margin-right: 50px;*/
+    margin-left: -80px;
+    margin-right: 30px;
+
+  }
+  .orderInform{
+    font-size: 20px;
+    margin-left: -80px;
+    margin-bottom: -40px;
+  }
+</style>
+
+<script lang="ts">
+import {ref, onMounted, defineComponent, reactive} from 'vue'
+import axios from "axios";
+export default defineComponent({
+  data() {
+    let tableData = ref([])
+    tableData = reactive(tableData)
+
+    const getTableList = async () => {
+          await axios.get('https://www.fastmock.site/mock/4adca991e257e0e3a89c8de7cad6295e/api/api').then((res)=>{
+            console.log(res.data.tableData);
+            tableData.value = res.data.tableData
+          })
+    }
+    onMounted(() => {
+      getTableList()
+    });
+    const changeStatusOfOrder = (row_index: number, row: any) => {
+      const targetRow = tableData.value[row_index];
+      targetRow.statusOfOrder = '已送达'
+      row.isActive = true;
+      targetRow.buttonText='订单已完成'
+    };
+
+
+    return {
+      tableData,
+      changeStatusOfOrder,
+    }
+  }
+})
 </script>
 
-<style scoped>
+<script lang="ts" setup>
+  import type { TableColumnCtx } from 'element-plus'
+  import {reactive} from "vue";
+  interface TableData {
+  numberOfOrder:string//订单编号
+  numberOfDelivery:string//配送编号
+  numberOfUser:string//用户编号
+  addressOfUser:string//用户地址
+  lastestTime:string//最晚送达时间或送达时间
+  statusOfOrder:string//订单状态
+  numberOfVan: string//车辆编号
+  realLocation:string//实时位置
+  // address: string//目标地址
+  buttonText: string//按钮内容
+}
 
-</style>
+  const formatter = (row: TableData, column: TableColumnCtx<TableData>) => {
+  return row.realLocation
+}
+
+</script>
+
