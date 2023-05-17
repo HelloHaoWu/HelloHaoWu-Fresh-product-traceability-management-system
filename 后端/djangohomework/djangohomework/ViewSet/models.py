@@ -100,8 +100,8 @@ class OrderDetail(models.Model):
     OrderDetail_ID = models.IntegerField(primary_key=True,null=False)
     Product_ID = models.ForeignKey(to=Product,to_field="Product_ID", on_delete=models.CASCADE)
     Order_ID = models.ForeignKey(to=Order,to_field="Order_ID", on_delete=models.CASCADE)
-    Quantity = models.DecimalField(default=0,decimal_places=3,max_digits=9999)
-    SalePrice = models.DecimalField(default=0,decimal_places=2,max_digits=9999)
+    Quantity = models.DecimalField(default=0,decimal_places=3,max_digits=60)
+    SalePrice = models.DecimalField(default=0,decimal_places=2,max_digits=60)
 
 class Dispatcher(models.Model):
     '''
@@ -161,11 +161,11 @@ class ProductBatch(models.Model):
     Product_ID = models.ForeignKey(to=Product,to_field="Product_ID", on_delete=models.CASCADE)
     WareHouse_ID = models.ForeignKey(to=WareHouse,to_field="WareHouse_ID", on_delete=models.CASCADE)
     Supplier_ID = models.ForeignKey(to=Supplier,to_field="Supplier_ID", on_delete=models.CASCADE)
-    ProductBatch_Current_Inventory = models.DecimalField(default=0,decimal_places=3,max_digits=9999)
+    ProductBatch_Current_Inventory = models.DecimalField(default=0,decimal_places=3,max_digits=60)
     ProductBatch_Production_Time = models.DateTimeField(null=True,blank=True)
     ProductBatch_Production_Place = models.CharField(max_length=256)
     ProductBatch_Expiration_Time = models.DateTimeField(null=True,blank=True)
     ProductBatch_Warehousing_Time = models.DateTimeField(null=True,blank=True)
     ProductBatch_Supply_Time = models.DateTimeField(null=True,blank=True)
-    ProductBatch_Supply_Amount = models.DecimalField(default=0,decimal_places=3,max_digits=9999) #Decimalfield必须指定max_digits
+    ProductBatch_Supply_Amount = models.DecimalField(default=0,decimal_places=3,max_digits=60) #Decimalfield必须指定max_digits
     ProductBatch_Supply_Address = models.CharField(max_length=256)
