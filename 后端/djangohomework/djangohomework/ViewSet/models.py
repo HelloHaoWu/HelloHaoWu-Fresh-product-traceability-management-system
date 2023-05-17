@@ -36,8 +36,10 @@ class Product(models.Model):
     产品
     产品编号 Product_ID 主键
     产品名称 Product_Name
+    产品类型 Product_Type
     '''
     Product_ID = models.IntegerField(primary_key=True,null=False)
+    Product_Name = models.CharField(max_length=256)
     Product_Name = models.CharField(max_length=256)
 
 class Customer(models.Model):
@@ -68,7 +70,7 @@ class Order(models.Model):
     '''
     Order_ID = models.IntegerField(primary_key=True, null=False)
     Order_Time = models.DateTimeField(auto_now_add=True)
-    Customer_ID = models.IntegerField(to=Customer,to_field="Customer_ID", on_delete=models.CASCADE)
+    Customer_ID = models.ForeignKey(to=Customer,to_field="Customer_ID", on_delete=models.CASCADE)
     Order_Destination = models.CharField(max_length=256)
     # 两个表互相引用会有问题？在订单信息表中取消配送编号？
     # Order_Delivery_ID = models.IntegerField(to=Delivery,to_field="Delivery_id", on_delete=models.CASCADE)
@@ -82,7 +84,7 @@ class Vehicle(models.Model):
     '''
     Vehicle_ID = models.IntegerField(primary_key=True, null=False)
     # 需要对被引用的外键首先定义，此处以WareHouse为名
-    WareHouse_ID = models.IntegerField(to=WareHouse,to_field="WareHouse_ID", on_delete=models.CASCADE)
+    WareHouse_ID = models.ForeignKey(to=WareHouse,to_field="WareHouse_ID", on_delete=models.CASCADE)
     # models中无法使用Varchar类型
     Vehicle_Type = models.CharField(max_length=256,null=True,blank=True)
 
@@ -96,10 +98,10 @@ class OrderDetail(models.Model):
     产品售价 SalePrice Float类型，保留两位小数
     '''
     OrderDetail_ID = models.IntegerField(primary_key=True,null=False)
-    Product_ID = models.IntegerField(to=Product,to_field="Product_ID", on_delete=models.CASCADE)
-    Order_ID = models.IntegerField(to=Order,to_field="Order_ID", on_delete=models.CASCADE)
-    Quantity = models.FloatField(default=0,decimal_places=3)
-    SalePrice = models.FloatField(default=0,decimal_places=2)
+    Product_ID = models.ForeignKey(to=Product,to_field="Product_ID", on_delete=models.CASCADE)
+    Order_ID = models.ForeignKey(to=Order,to_field="Order_ID", on_delete=models.CASCADE)
+    Quantity = models.DecimalField(default=0,decimal_places=3,max_digits=9999)
+    SalePrice = models.DecimalField(default=0,decimal_places=2,max_digits=9999)
 
 class Dispatcher(models.Model):
     '''
@@ -116,7 +118,7 @@ class Dispatcher(models.Model):
     Dispatcher_Sex = models.IntegerField(choices=((1, "男"), (0, "女")), null=False)
     Dispatcher_Age = models.IntegerField(default=0)
     Dispatcher_Tel = models.IntegerField(null=True,blank=True)
-    WareHouse_ID = models.IntegerField(to=WareHouse,to_field="WareHouse_ID", on_delete=models.CASCADE)
+    WareHouse_ID = models.ForeignKey(to=WareHouse,to_field="WareHouse_ID", on_delete=models.CASCADE)
 
 class Delivery(models.Model):
     '''
@@ -131,9 +133,9 @@ class Delivery(models.Model):
     完成配送时间 Completion_Time 完成订单时，记录时间
     '''
     Delivery_ID = models.IntegerField(primary_key=True, null=False)
-    Order_ID = models.IntegerField(to=Order,to_field="Order_ID", on_delete=models.CASCADE)
-    Dispatcher_ID = models.IntegerField(to=Dispatcher,to_field="Dispatcher_ID", on_delete=models.CASCADE)
-    Vehicle_ID = models.IntegerField(to=Vehicle,to_field="Vehicle_ID", on_delete=models.CASCADE)
+    Order_ID = models.ForeignKey(to=Order,to_field="Order_ID", on_delete=models.CASCADE)
+    Dispatcher_ID = models.ForeignKey(to=Dispatcher,to_field="Dispatcher_ID", on_delete=models.CASCADE)
+    Vehicle_ID = models.ForeignKey(to=Vehicle,to_field="Vehicle_ID", on_delete=models.CASCADE)
     Latert_Delivery_Time = models.DateField(null=False)
     Current_Status = models.IntegerField(choices=((0,"即将配送"),(1,"正在配送中"),(2,"已送达")),default=0)
     Current_Position = models.CharField(max_length=256)
@@ -156,14 +158,14 @@ class ProductBatch(models.Model):
     供应地址 ProductBatch_Supply_Address
     '''
     ProductBatch_ID = models.IntegerField(primary_key=True, null=False)
-    Product_ID = models.IntegerField(to=Product,to_field="Product_ID", on_delete=models.CASCADE)
-    WareHouse_ID = models.IntegerField(to=WareHouse,to_field="WareHouse_ID", on_delete=models.CASCADE)
-    Supplier_ID = models.IntegerField(to=Supplier,to_field="Supplier_ID", on_delete=models.CASCADE)
-    ProductBatch_Current_Inventory = models.FloatField(default=0,decimal_places=3)
+    Product_ID = models.ForeignKey(to=Product,to_field="Product_ID", on_delete=models.CASCADE)
+    WareHouse_ID = models.ForeignKey(to=WareHouse,to_field="WareHouse_ID", on_delete=models.CASCADE)
+    Supplier_ID = models.ForeignKey(to=Supplier,to_field="Supplier_ID", on_delete=models.CASCADE)
+    ProductBatch_Current_Inventory = models.DecimalField(default=0,decimal_places=3,max_digits=9999)
     ProductBatch_Production_Time = models.DateTimeField(null=True,blank=True)
     ProductBatch_Production_Place = models.CharField(max_length=256)
     ProductBatch_Expiration_Time = models.DateTimeField(null=True,blank=True)
     ProductBatch_Warehousing_Time = models.DateTimeField(null=True,blank=True)
     ProductBatch_Supply_Time = models.DateTimeField(null=True,blank=True)
-    ProductBatch_Supply_Amount = models.FloatField(default=0,decimal_places=3)
+    ProductBatch_Supply_Amount = models.DecimalField(default=0,decimal_places=3,max_digits=9999) #Decimalfield必须指定max_digits
     ProductBatch_Supply_Address = models.CharField(max_length=256)
