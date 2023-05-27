@@ -5,6 +5,9 @@ export default {
     const { username, password } = JSON.parse(config.body)
     // 先判断用户是否存在
     // 判断账号和密码是否对应
+
+    //账号演示:admin:客服人员（全部可以看）;haohao:客户;deliver:配送员;supplier:供应商;
+
     if (username === 'admin' && password === 'admin') {
       return {
         code: 200,
@@ -20,34 +23,55 @@ export default {
             {
               path: '/customer',
               name: 'customer',
-              label: '客户管理',
+              label: '客户',
               icon: 'user',
               url: 'customer/customer'
             },
             {
-              path: '/mall',
-              name: 'mall',
-              label: '商品管理',
-              icon: 'video-play',
-              url: 'mall/Mall'
+              path: '/deliver',
+              name: 'deliver',
+              label: '配送人员',
+              icon: 'Share',
+              url: 'deliver/deliver'
             },
             {
-              label: '其他',
-              icon: 'location',
+              path: '/supplier',
+              name: 'supplier',
+              label: '供应商',
+              icon: 'Promotion',
+              url: 'supplier/supplier'
+            },
+            // {
+            //   path: '/mall',
+            //   name: 'mall',
+            //   label: '商品管理',
+            //   icon: 'video-play',
+            //   url: 'mall/Mall'
+            // },
+            {
+              label: '客服人员',
+              icon: 'setting',
               children: [
                 {
-                  path: '/page1',
-                  name: 'page1',
+                  path: '/manager-1',
+                  name: 'manager-1',
                   label: '页面1',
-                  icon: 'setting',
-                  url: 'other/Page1'
+                  icon: 'location',
+                  url: 'manager/Manager-1'
                 },
                 {
-                  path: '/page2',
-                  name: 'page2',
+                  path: '/manager-2',
+                  name: 'manager-2',
                   label: '页面2',
-                  icon: 'setting',
-                  url: 'other/Page1'
+                  icon: 'location',
+                  url: 'manager/Manager-2'
+                },
+                {
+                  path: '/manager-3',
+                  name: 'manager-3',
+                  label: '页面3',
+                  icon: 'location',
+                  url: 'manager/Manager-3'
                 }
               ]
             }
@@ -69,11 +93,59 @@ export default {
               url: 'home/Home'
             },
             {
-              path: '/video',
-              name: 'video',
-              label: '商品管理',
-              icon: 'video-play',
-              url: 'mall/Mall'
+              path: '/customer',
+              name: 'customer',
+              label: '客户',
+              icon: 'user',
+              url: 'customer/customer'
+            }
+          ],
+          token: Mock.Random.guid(),
+          message: '获取成功'
+        }
+      }
+    } else if (username === 'deliver' && password === 'deliver') {
+      return {
+        code: 200,
+        data: {
+          menu: [
+            {
+              path: '/',
+              name: 'home',
+              label: '首页',
+              icon: 'house',
+              url: 'home/Home'
+            },
+            {
+              path: '/deliver',
+              name: 'deliver',
+              label: '配送人员',
+              icon: 'Share',
+              url: 'deliver/deliver'
+            }
+          ],
+          token: Mock.Random.guid(),
+          message: '获取成功'
+        }
+      }
+    } else if (username === 'supplier' && password === 'supplier') {
+      return {
+        code: 200,
+        data: {
+          menu: [
+            {
+              path: '/',
+              name: 'home',
+              label: '首页',
+              icon: 'house',
+              url: 'home/Home'
+            },
+            {
+              path: '/supplier',
+              name: 'supplier',
+              label: '供应商',
+              icon: 'Promotion',
+              url: 'supplier/supplier'
             }
           ],
           token: Mock.Random.guid(),
