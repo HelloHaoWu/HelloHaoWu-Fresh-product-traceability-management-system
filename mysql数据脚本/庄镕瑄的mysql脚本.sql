@@ -1,4 +1,4 @@
-INSERT INTO Dispatcher (Dispatcher_ID, WareHouse_ID, Dispatcher_Name, Dispatcher_Sex, Dispatcher_Age, Dispatcher_Tel)
+INSERT INTO viewset_dispatcher (Dispatcher_ID, WareHouse_ID_id, Dispatcher_Name, Dispatcher_Sex, Dispatcher_Age, Dispatcher_Tel)
 VALUES
     (1, 11, '丁聪华', '男', 23, '13328744329'),
     (2, 12, '夏潇琦', '女', 27, '16846573586'),
@@ -21,7 +21,7 @@ VALUES
     (19, 9, '彭雪薇', '女', 35, '18236498215'),
     (20, 10, '何星振', '男', 41, '18192847541');
 
-INSERT INTO WareHouse (Vehicle_ID, WareHouse_ID, Vehicle_Type)
+INSERT INTO viewset_vehicle (Vehicle_ID, WareHouse_ID_id, Vehicle_Type)
 VALUES
     (1, 1, '微型货车'),
     (2, 3, '面包车'),
@@ -44,11 +44,11 @@ VALUES
     (19, 18, '厢式货车'),
     (20, 20, '厢式货车');
 
-INSERT INTO ProductBatch (
+INSERT INTO viewset_productbatch (
   ProductBatch_ID,
-  Product_ID,
-  WareHouse_ID,
-  Supplier_ID,
+  Product_ID_id,
+  WareHouse_ID_id,
+  Supplier_ID_id,
   ProductBatch_Current_Inventory,
   ProductBatch_Production_Time,
   ProductBatch_Production_Place,
