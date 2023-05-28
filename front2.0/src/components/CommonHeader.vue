@@ -19,15 +19,15 @@
         </div>
         <!-- 右边放图片+下拉菜单 -->
         <div class="r-content">
+            <p class="name" v-text='username'></p>
             <el-dropdown>
                 <span class="el-dropdown-link">
                     <!-- 图片 -->
-                <img class="user" :src="getImgSrc('1')" alt=""/>
+                <img class="user" :src="getImgSrc(username)" alt=""/>
                 </span>
                 <!-- 下拉菜单 -->
                 <template #dropdown>
                     <el-dropdown-menu>
-                        <el-dropdown-item>个人中心</el-dropdown-item>
                         <el-dropdown-item @click="handleLoginOut">退出</el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
@@ -68,10 +68,16 @@ export default defineComponent ({
             });
         };
 
+        // 取得用户名字
+        const username = computed(()=>{
+            return store.state.loginForm.username;
+        });
+
         return{
             getImgSrc,
             current,
             handleLoginOut,
+            username,
         };
     },
 });
@@ -90,6 +96,13 @@ header{
 }
 // 设置r-content中图片大小
 .r-content{
+    display: flex;
+    align-items: center;
+
+    .name{
+        color: #fff;
+        margin-right: 20px;
+    }
     .user{
         width: 40px;
         height: 40px;

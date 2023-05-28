@@ -41,13 +41,6 @@ export default {
               icon: 'Promotion',
               url: 'supplier/supplier'
             },
-            // {
-            //   path: '/mall',
-            //   name: 'mall',
-            //   label: '商品管理',
-            //   icon: 'video-play',
-            //   url: 'mall/Mall'
-            // },
             {
               label: '客服人员',
               icon: 'setting',
@@ -86,7 +79,7 @@ export default {
         data: {
           menu: [
             {
-              path: '/',
+              path: '/home',
               name: 'home',
               label: '首页',
               icon: 'house',
@@ -110,7 +103,7 @@ export default {
         data: {
           menu: [
             {
-              path: '/',
+              path: '/home',
               name: 'home',
               label: '首页',
               icon: 'house',
@@ -134,7 +127,7 @@ export default {
         data: {
           menu: [
             {
-              path: '/',
+              path: '/home',
               name: 'home',
               label: '首页',
               icon: 'house',
