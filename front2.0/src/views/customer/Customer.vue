@@ -98,7 +98,7 @@
 </style>
 
 <script lang="ts">
-import { ref ,onMounted,defineComponent} from 'vue'
+import { ref ,onMounted,defineComponent } from 'vue'
 import axios from "axios";//借用异步调用请求模块
 export default defineComponent({
   data() {
@@ -106,13 +106,13 @@ export default defineComponent({
 
     //async即为axios中的模块之一，意为“异步”，其中的await函数可以实现功能
     const getTableList = async () => {
-      址https://www.fastmock.site/mock/4adca991e257e0e3a89c8de7cad6295e/api
+      // 址https:www.fastmock.site/mock/4adca991e257e0e3a89c8de7cad6295e/api
           // await axios.get('/home/getData').then((res)=>{
           //   // console.log(res.data.data.tableData);
           //   tableData.value = res.data.data.tableData
           // })
-          await axios.get('https://www.fastmock.site/mock/4adca991e257e0e3a89c8de7cad6295e/api/home/getData').then((res)=>{
-            // console.log(res.data.tableData);
+          await axios.get('http://43.143.167.222:8020/Customer').then((res)=>{
+            console.log(res);
             tableData.value = res.data.tableData
 
           })
