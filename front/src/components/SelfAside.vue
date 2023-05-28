@@ -34,7 +34,7 @@
               </div>
                 <span class="nav__name">主页</span>
             </router-link>
-            <router-link to="/customer" class="nav__link">
+            <router-link to="/customer" v-if="show_customerpage()" class="nav__link">
               <div class = "nav__icon">
                 <el-icon><User /></el-icon>
               </div>
@@ -42,14 +42,14 @@
             </router-link>
 
 
-            <router-link to="/deliver" class="nav__link">
+            <router-link to="/deliver" v-if="show_dispatcherpage()" class="nav__link">
               <div class = "nav__icon">
                 <el-icon><Share /></el-icon>
               </div>
               <span class="nav__name">配送人员</span>
             </router-link>
 <!--            <a href="#" class="nav__link">-->
-              <router-link to="/supplier" class="nav__link">
+              <router-link to="/supplier" v-if="show_supplierpage()" class="nav__link">
                 <div class = "nav__icon">
                   <el-icon><Promotion /></el-icon>
                 </div>
@@ -153,47 +153,62 @@
 
 <script>
 /*===== EXPANDER MENU  =====*/
-  import {Menu} from "@element-plus/icons-vue";
-
+import {Menu} from "@element-plus/icons-vue";
+import {useUserStore} from '../views/login.vue';
 export default {
-    name: 'SelfAside',
+  name: 'SelfAside',
   components: {Menu},
-    mounted() {
-      /*===== LINK ACTIVE  =====*/
-      const linkColor = document.querySelectorAll('.nav_link')
-      function colorLink(){
-        linkColor.forEach(l=> l.classList.remove('active'))
-        this.classList.add('active')
-      }
-      linkColor.forEach(l=> l.addEventListener('click', colorLink))
-      /*===== COLLAPSE MENU  =====*/
-      const linkCollapse = document.getElementsByClassName('collapse__link')
-      var i
+  data() {
+    const store = useUserStore();
+    return {
+      user: store.user
+    }
+  },
+  mounted() {
+    console.log(this.user)
+    /*===== LINK ACTIVE  =====*/
+    const linkColor = document.querySelectorAll('.nav_link')
+    function colorLink(){
+      linkColor.forEach(l=> l.classList.remove('active'))
+      this.classList.add('active')
+    }
+    linkColor.forEach(l=> l.addEventListener('click', colorLink))
+    /*===== COLLAPSE MENU  =====*/
+    const linkCollapse = document.getElementsByClassName('collapse__link')
+    var i
 
-      for(i=0;i<linkCollapse.length;i++){
-        linkCollapse[i].addEventListener('click', function(){
-          const collapseMenu = this.nextElementSibling
-          collapseMenu.classList.toggle('showCollapse')
+    for(i=0;i<linkCollapse.length;i++){
+      linkCollapse[i].addEventListener('click', function(){
+        const collapseMenu = this.nextElementSibling
+        collapseMenu.classList.toggle('showCollapse')
 
-          const rotate = collapseMenu.previousElementSibling
-          rotate.classList.toggle('rotate')
-        })
+        const rotate = collapseMenu.previousElementSibling
+        rotate.classList.toggle('rotate')
+      })
+    }
+  },
+  methods: {
+    showMenu(toggleId,navbarId,bodyId) {
+      console.log('success to enter.')
+      const toggle = document.getElementById(toggleId),
+          navbar = document.getElementById(navbarId),
+          bodypadding = document.getElementById(bodyId)
+      if (toggle && navbar) {
+        navbar.classList.toggle('expander')
+        bodypadding.classList.toggle('body-pd')
       }
     },
-    methods: {
-      showMenu(toggleId,navbarId,bodyId) {
-        console.log('success to enter.')
-        const toggle = document.getElementById(toggleId),
-            navbar = document.getElementById(navbarId),
-            bodypadding = document.getElementById(bodyId)
-        if (toggle && navbar) {
-          navbar.classList.toggle('expander')
-          bodypadding.classList.toggle('body-pd')
-        }
-      }
+    show_customerpage() {
+      return this.user === 'customer' || this.user === 'manager';
+    },
+    show_dispatcherpage() {
+      return this.user === 'dispatcher' || this.user === 'manager';
+    },
+    show_supplierpage() {
+      return this.user === 'supplier' || this.user === 'manager';
     }
   }
-
+}
 </script>
 
 <style>
