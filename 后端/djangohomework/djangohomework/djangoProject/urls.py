@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 
-from ViewSet.views import Testdata
+from ViewSet.views import Info4Customer
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Testdata/', Testdata.as_view())
+    path('Customer/', Info4Customer.as_view()),
+    # path('Delivery/', Info4Delivery.as_view())
 ]
