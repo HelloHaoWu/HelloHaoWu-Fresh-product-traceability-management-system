@@ -105,7 +105,7 @@ export default defineComponent({
 
     //async即为axios中的模块之一，意为“异步”，其中的await函数可以实现功能
     const getTableList = async () => {
-      址https://www.fastmock.site/mock/4adca991e257e0e3a89c8de7cad6295e/api
+      //https://www.fastmock.site/mock/4adca991e257e0e3a89c8de7cad6295e/api
       // await axios.get('/home/getData').then((res)=>{
       //   // console.log(res.data.data.tableData);
       //   tableData.value = res.data.data.tableData
