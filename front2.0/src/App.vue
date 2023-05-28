@@ -22,7 +22,7 @@
         width: 100%;
         margin: 0px;
         padding: 0px;
-        border:0px;
+        border: 0px;
         max-width: 100%;
         max-height: 100%;
     }

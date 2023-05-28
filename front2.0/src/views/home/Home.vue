@@ -9,19 +9,19 @@
             <el-card shadow="hover">
                 <!-- 展示user信息 -->
                 <div class="user">
-                    <img src="..\..\assets\images\1.jpg" alt="" />
+                    <img :src="getImgSrc(username)" alt="" />
                     <div class="userinfo">
                         <p class="name" v-text='username'> </p>
-                        <p class="role"> Admin </p>
+                        <p class="role" v-text='getRole(username)'> </p>
                     </div>
                 </div>
                 <div class="login-info">
-                    <p>
+                    <!-- <p>
                         上次登录时间:<span>1990-01-01</span>
                     </p>
                     <p>
                         上次登录地点:<span>北京</span>
-                    </p>
+                    </p> -->
                 </div>
             </el-card>
         
@@ -50,6 +50,27 @@ import { useStore} from 'vuex';
 // import axios from 'axios';
 export default defineComponent({
     setup() {
+        // 动态引入图片
+        let getImgSrc = (img)=>{
+            // import.meta.url作为返回组件路径，作为基准
+            // URL则是含有图片地址的对象
+            // 打印 console.log(new URL(`../assets/images/${img}.jpg`, import.meta.url))
+            return new URL(`../../assets/images/${img}.jpg`, import.meta.url).href;
+        };
+        // 判断角色
+        let getRole = (username)=>{
+            if (username == 'admin') {
+                return '管理';
+            } else if (username == 'haohao') {
+                return '用户';
+            } else if (username == 'deliver') {
+                return '配送员';
+            } else if (username == 'supplier') {
+                return '供应商';
+            }
+            
+        };
+
         // 表格数据
         let tableData = ref([]);
         // 表格标签
@@ -94,6 +115,8 @@ export default defineComponent({
         });
 
         return {
+            getImgSrc,
+            getRole,
             tableData,
             tableLabel,
             username,
@@ -121,6 +144,9 @@ export default defineComponent({
         }
         .userinfo{
             width: 100%;
+            .role{
+                margin-top: 10px;
+            }
         }
     }
     // 登录信息样式

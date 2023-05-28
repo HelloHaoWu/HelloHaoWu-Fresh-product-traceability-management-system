@@ -23,7 +23,7 @@
             <el-dropdown>
                 <span class="el-dropdown-link">
                     <!-- 图片 -->
-                <img class="user" :src="getImgSrc('1')" alt=""/>
+                <img class="user" :src="getImgSrc(username)" alt=""/>
                 </span>
                 <!-- 下拉菜单 -->
                 <template #dropdown>
