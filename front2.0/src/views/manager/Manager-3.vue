@@ -1,31 +1,36 @@
 <template>
-  <div class = 'stockInform'><strong>库存desu</strong></div>
-  <el-card class = 'stockTable'>
-    <el-table
-        :data="tableData"
-        :default-sort="{ prop: 'date', order: 'descending' }"
-        style="width: 100%"
-    >
-      <el-table-column prop="numberOfBatch" label="批次编号" width="180" sortable/>
-      <el-table-column prop="numberOfItem" label="产品编号" width="180" sortable/>
-      <el-table-column prop="numberOfStock" label="仓库编号" width="180" sortable/>
-      <el-table-column prop="numberOfVendor" label="供应商编号" width="180" sortable/>
-      <el-table-column prop="Type" label="种类" width="180" sortable
-                       :filters="[
-                            { text: '蔬菜', value: '蔬菜' },
-                            { text: '肉类', value: '肉类' },
-                            { text: '海鲜', value: '海鲜' },
-                            { text: '蛋类', value: '蛋类' },
-                          ]"
-                       :filter-method="filterHandler"/>
-      <el-table-column prop="Quantity" label="入库量" width="180" sortable/>
-      <el-table-column prop="dataOfIncome" label="入库时间" width="180" sortable/>
-      <el-table-column prop="EXP" label="保质期" width="180" sortable/>
-    </el-table>
-  </el-card>
+  <div class = 'all_page'>
+    <div class = 'stockInform'><strong>库存desu</strong></div>
+    <el-card class = 'stockTable'>
+      <el-table
+          :data="tableData"
+          :default-sort="{ prop: 'date', order: 'descending' }"
+          style="width: 100%"
+      >
+  <!--      <el-table-column prop="numberOfBatch" label="批次编号" width="180" sortable/>-->
+        <el-table-column prop="Product_ID_id" label="产品编号" width="180" sortable/>
+        <el-table-column prop="WareHouse_ID_id" label="仓库编号" width="180" sortable/>
+        <el-table-column prop="Supplier_ID_id" label="供应商编号" width="180" sortable/>
+        <el-table-column prop="orderdetail__ProductBatch_ID__Product_ID__Product_Type" label="种类" width="180" sortable
+                         :filters="[
+                              { text: '蔬菜', value: '蔬菜' },
+                              { text: '肉类', value: '肉类' },
+                              { text: '海鲜', value: '海鲜' },
+                              { text: '蛋类', value: '蛋类' },
+                            ]"
+                         :filter-method="filterHandler"/>
+        <el-table-column prop="ProductBatch_Supply_Amount" label="入库量" width="180" sortable/>
+        <el-table-column prop="ProductBatch_Warehousing_Time" label="入库时间" width="180" sortable/>
+        <el-table-column prop="ProductBatch_Expiration_Time" label="到期时间" width="180" sortable/>
+      </el-table>
+    </el-card>
+  </div>
 </template>
 
 <style>
+.all_page{
+  margin-left: 80px;
+}
 .stockTable{
   color: #111111;
   height: 700px;
@@ -79,19 +84,17 @@ export default defineComponent({
 import type { TableColumnCtx } from 'element-plus'
 import {reactive} from "vue";
 interface TableData {
-  numberOfBatch:string//批次编号
-  numberOfItem:string//产品编号
-  numberOfStock:string//仓库编号
-  numberOfVendor:string//供应商编号
-  Type:string//种类
-  Quantity:string//入库量
-  dataOfIncome:string//入库时间
-  EXP:string//保质期
+
+  // numberOfBatch:string//批次编号
+  Product_ID_id:string//产品编号
+  WareHouse_ID_id:string//仓库编号
+  Supplier_ID_id:string//供应商编号
+  orderdetail__ProductBatch_ID__Product_ID__Product_Type:string//种类
+  ProductBatch_Supply_Amount: string//订单数量
+  ProductBatch_Warehousing_Time:string//入库时间
+  ProductBatch_Expiration_Time:string//到期时间
 }
 
-const formatter = (row: TableData, column: TableColumnCtx<TableData>) => {
-  return row.realLocation
-}
 
 </script>
 

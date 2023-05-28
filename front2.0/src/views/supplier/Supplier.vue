@@ -1,37 +1,42 @@
 <template>
-  <div class = 'deliverInform'><strong>供货单订单明细</strong></div>
-  <el-card class = 'deliverTable'>
-    <!--    <div class = 'deliverInform'>您的需配订单</div>-->
-    <el-table
-        :data="tableData"
-        :default-sort="{ prop: 'date', order: 'descending' }"
-        style="width: 100%"
-    >
-      <el-table-column prop="numberOfSupply" label="产品批次编号" sortable width="180" />
-      <el-table-column prop="numberOfProduct" label="产品编号" width="180" />
-      <el-table-column prop="numberOfStorage" label="仓库编号" width="180" />
-      <el-table-column prop="numberOfSupplier" label="供应商编号" width="180" />
-      <el-table-column prop="produceTime" label="生产时间" width="180" />
-      <el-table-column prop="receiveTime" label="入库时间" width="180"  />
-      <el-table-column prop="statusOfProduct" label="订单状态" width="180"  />
-      <el-table-column prop="amountOfProduct" label="订单数量" width="180"  />
-      <el-table-column prop="targetAddress" label="目标位置" width="180"  />
-      <el-table-column prop="buttonText" label="按钮内容" width="180"  />
-      <el-table-column>
-        <template #default="scope">
-          <el-button
-              :class="{'active-button': scope.row.isActive, 'statusButton': !scope.row.isActive}"
-              @click="changeStatusOfOrder(scope.$index,scope.row)">
-            <strong>{{ scope.row.buttonText }}</strong>
-            <!--            :class是一个class类，其中的键绑定的是一个css对象，其对应的value值对应的是一个布尔类型对象，可以通过更改这个value来实现选择性css-->
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-  </el-card>
+  <div class = 'all_page'>
+    <div class = 'deliverInform'><strong>供货单订单明细</strong></div>
+    <el-card class = 'deliverTable'>
+      <!--    <div class = 'deliverInform'>您的需配订单</div>-->
+      <el-table
+          :data="tableData"
+          :default-sort="{ prop: 'date', order: 'descending' }"
+          style="width: 100%"
+      >
+  <!--      <el-table-column prop="numberOfSupply" label="产品批次编号" sortable width="180" />-->
+        <el-table-column prop="Product_ID_id" label="产品编号" width="180" />
+        <el-table-column prop="WareHouse_ID_id" label="仓库编号" width="180" />
+        <el-table-column prop="Supplier_ID_id" label="供应商编号" width="180" />
+        <el-table-column prop="ProductBatch_Supply_Time" label="生产时间" width="180" />
+        <el-table-column prop="ProductBatch_Warehousing_Time" label="入库时间" width="180"  />
+  <!--      <el-table-column prop="statusOfProduct" label="订单状态" width="180"  />-->
+        <el-table-column prop="ProductBatch_Supply_Amount" label="订单数量" width="180"  />
+        <el-table-column prop="ProductBatch_Supply_Address" label="发出位置" width="180"  />
+  <!--      <el-table-column prop="buttonText" label="按钮内容" width="180"  />-->
+  <!--      <el-table-column>-->
+  <!--        <template #default="scope">-->
+  <!--          <el-button-->
+  <!--              :class="{'active-button': scope.row.isActive, 'statusButton': !scope.row.isActive}"-->
+  <!--              @click="changeStatusOfOrder(scope.$index,scope.row)">-->
+  <!--            <strong>{{ scope.row.buttonText }}</strong>-->
+  <!--            &lt;!&ndash;            :class是一个class类，其中的键绑定的是一个css对象，其对应的value值对应的是一个布尔类型对象，可以通过更改这个value来实现选择性css&ndash;&gt;-->
+  <!--          </el-button>-->
+  <!--        </template>-->
+  <!--      </el-table-column>-->
+      </el-table>
+    </el-card>
+  </div>
 </template>
 
 <style>
+.all_page{
+  margin-left: 80px;
+}
 .deliverTable{
   color: #111111;
   height: 700px;
@@ -102,21 +107,21 @@ export default defineComponent({
 import type { TableColumnCtx } from 'element-plus'
 import {reactive} from "vue";
 interface TableData {
-  numberOfSupply:string//产品批次编号
-  numberOfProduct:string//产品编号
-  numberOfStorage:string//仓库编号
-  numberOfSupplier:string//供应商编号
-  produceTime:string//生产时间
-  receiveTime:string//入库时间
-  statusOfProduct:string//订单状态
-  amountOfProduct: string//订单数量
-  targetAddress:string//目标位置
-  buttonText: string//按钮内容
+  // numberOfSupply:string//产品批次编号
+  Product_ID_id:string//产品编号
+  WareHouse_ID_id:string//仓库编号
+  Supplier_ID_id:string//供应商编号
+  ProductBatch_Supply_Time:string//生产时间
+  ProductBatch_Warehousing_Time:string//入库时间
+  // statusOfProduct:string//订单状态
+  ProductBatch_Supply_Amount: string//订单数量
+  ProductBatch_Supply_Address:string//发出位置
+  // buttonText: string//按钮内容
 }
 
-const formatter = (row: TableData, column: TableColumnCtx<TableData>) => {
-  return row.targetAddress
-}
+// const formatter = (row: TableData, column: TableColumnCtx<TableData>) => {
+//   return row.targetAddress
+// }
 
 
 </script>

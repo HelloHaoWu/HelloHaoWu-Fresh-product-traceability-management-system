@@ -7,44 +7,41 @@
         <el-button @click="resetDateFilter">reset date filter</el-button>
         <el-button @click="clearFilter">reset all filters</el-button>
         <el-table ref="tableRef" row-key="date" :data="tableData" stripe style="width: 100%">
-          <!--            <div class="tableExpander">-->
-          <el-table-column type ="expand" :data="tableData" class="tableExpander">
-            <template #default="props">
-              <div m="4">
-                <p m="t-0 b-2">省份/直辖市: {{ props.row.state }}</p>
-                <p m="t-0 b-2">城市/区: {{ props.row.city }}</p>
-                <p m="t-0 b-2">收货地址: {{ props.row.address }}</p>
-                <p m="t-0 b-2">订单编号: {{ props.row.zip }}</p>
-                <h3>产品溯源系统跟踪信息：</h3>
-                <el-card >
-                  <el-table :data="props.row.family" :border="childBorder">
-                    <el-table-column label="负责人" prop="name" />
-                    <el-table-column label="发出地点-目标地点" prop="state" />
-                    <el-table-column label="发出时间" prop="city" />
-                    <el-table-column label="到达时间" prop="address" />
-                    <el-table-column label="订单状态" prop="zip" />
-                  </el-table>
-                </el-card>
-              </div>
-            </template>
-          </el-table-column>
-          <!--            </div>-->
+<!--        <div class="tableExpander">-->
+        <el-table-column type="expand" :data="tableData" class="tableExpander">
+          <template #default="props">
+            <div m="3">
+              <p m="t-0 b-2">目标地址:{{ props.row.Order_Destination }}</p>
+              <p m="t-0 b-2">客户性别:{{ props.row.Customer_ID__Customer_Sex}}</p>
+              <p m="t-0 b-2">客户姓名:{{ props.row.Customer_ID__Customer_Name }}</p>
+              <h3>产品溯源系统跟踪信息：</h3>
+              <el-card>
+                <el-table :data="props.row" :border="childBorder">
+                  <el-table-column label="下单时间" prop="Order_Time" />
+                  <el-table-column label="目标地点" prop="Order_Destination" />
+                  <el-table-column label="客户联系方式" prop="Customer_ID__Customer_Tel" />
+                  <el-table-column label="订单明细编号" prop="orderdetail__OrderDetail_ID" />
+                </el-table>
+              </el-card>
+            </div>
+          </template>
+        </el-table-column>
+<!--        </div>-->
           <el-table-column
-              prop="date"
+              prop="Order_Time"
               label="下单日期"
-              sortable
               width="180"
-              column-key="date"
+              column-key="Order_Time"
               :filters="[
-                            { text: '2023-05-01', value: '2023-05-01' },
-                            { text: '2023-05-02', value: '2023-05-02' },
-                            { text: '2023-05-03', value: '2023-05-03' },
-                            { text: '2023-05-04', value: '2023-05-04' },
+                            { text: '2023-05-23T17:23:00Z', value: '2023-05-23T17:23:00Z' },
+                            { text: '2023-05-23T18:45:00Z', value: '2023-05-23T18:45:00Z' },
+                            { text: '2023-05-23T19:12:00Z', value: '2023-05-23T19:12:00Z' },
+                            { text: '2023-05-23T20:59:00Z', value: '2023-05-23T20:59:00Z' },
                           ]"
               :filter-method="filterHandler"
           />
-          <el-table-column prop="name" label="姓名" width="180" />
-          <el-table-column prop="address" label="地址" :formatter="formatter" />
+          <el-table-column prop="Customer_ID__Customer_Name" label="客户姓名" width="180" />
+          <el-table-column prop="Order_Destination" label="目标地址" :formatter="formatter" />
 
           <el-table-column
               prop="tag"
@@ -53,14 +50,16 @@
               :filters="[
                   { text: '肉类', value: '肉类' },
                   { text: '蔬菜', value: '蔬菜' },
+                  { text: '奶类', value: '奶类' },
+                  { text: '水果', value: '水果' },
                 ]"
               :filter-method="filterTag"
               filter-placement="bottom-end">
             <template #default="scope">
               <el-tag
-                  :type="getTagColor(scope.row.tag)"
+                  :type="getTagColor(scope.row.orderdetail__ProductBatch_ID__Product_ID__Product_Type)"
                   disable-transitions>
-                {{ scope.row.tag }}
+                {{ scope.row.orderdetail__ProductBatch_ID__Product_ID__Product_Type }}
               </el-tag>
             </template>
           </el-table-column>
@@ -73,13 +72,12 @@
 <style>
 .customerCard{
   color: #111111;
-  height: 700px;
-  /*margin-top: 70px;*/
-  /*margin-right: 50px;*/
-  margin-top: 70px;
-  /*margin-right: 50px;*/
-  margin-left: -80px;
+  margin-top: 50px;
+  margin-left: 80px;
   margin-right: 30px;
+  max-height: 650px;
+  overflow-y: scroll;
+  margin-bottom: 10px !important;
 }
 
 .customerTable{
@@ -103,19 +101,13 @@ import axios from "axios";//借用异步调用请求模块
 export default defineComponent({
   data() {
     let tableData = ref([])
-
-    //async即为axios中的模块之一，意为“异步”，其中的await函数可以实现功能
     const getTableList = async () => {
-      址https://www.fastmock.site/mock/4adca991e257e0e3a89c8de7cad6295e/api
-          // await axios.get('/home/getData').then((res)=>{
-          //   // console.log(res.data.data.tableData);
-          //   tableData.value = res.data.data.tableData
-          // })
-          await axios.get('https://www.fastmock.site/mock/4adca991e257e0e3a89c8de7cad6295e/api/home/getData').then((res)=>{
-            // console.log(res.data.tableData);
-            tableData.value = res.data.tableData
+      await axios.get('http://43.143.167.222:8020/Customer/').then((res)=>{
+        console.log(res.data);
+        console.log(1)
+        tableData.value = res.data
 
-          })
+      })
     }
     onMounted(() => {
       getTableList()
@@ -132,8 +124,12 @@ export default defineComponent({
           return 'danger'; // red
         case '蔬菜':
           return 'success'; // green
+        case '奶类':
+          return 'info'; // blue
+        case '水果':
+          return '#FFA07A'; // blue
         default:
-          return 'info'; // blue (or any other color you want to use as the default)
+          return 'info'; // blue
       }
     },
     // ...
@@ -151,28 +147,21 @@ const parentBorder = ref(false)
 const childBorder = ref(false)
 
 interface User {
-  date: string//下单时间
-  name: string//客户姓名
-  address: string//收货地址
-  tag: string//产品类型（暂定）
-  state: string//客户性别
-  city: string//客户联系方式
+  Order_Time: string//下单时间
+  Customer_ID__Customer_Name: string//客户姓名
+  Order_Destination: string//收货地址
+  orderdetail__ProductBatch_ID__Product_ID__Product_Type: string//产品类型（暂定）
+  Customer_ID__Customer_Sex: string//客户性别
+  Customer_ID__Customer_Tel: string//客户联系方式
   // address: string//客户联系方式
-  zip: string//订单明细编号
+  orderdetail__OrderDetail_ID: string//订单明细编号
   family:object//订单详细信息，一个列表，包含供应商编号
-// {
-//   "name": "Jerry",//供应商名称
-//     "state": "California",//供应商编号
-//     "city": "San Francisco",//配送人员编号
-//     "address": "北京大运村2公寓0123",//配送人员联系方式
-//     "zip": "CA 94114"//仓库编号
-// },
 }
 
 const tableRef = ref<TableInstance>()
 
 const resetDateFilter = () => {
-  tableRef.value!.clearFilter(['date'])
+  tableRef.value!.clearFilter(['Order_Time'])
 }
 // TODO: improvement typing when refactor table
 const clearFilter = () => {
@@ -181,10 +170,10 @@ const clearFilter = () => {
   tableRef.value!.clearFilter()
 }
 const formatter = (row: User, column: TableColumnCtx<User>) => {
-  return row.address
+  return row.Order_Destination
 }
 const filterTag = (value: string, row: User) => {
-  return row.tag === value
+  return row.orderdetail__ProductBatch_ID__Product_ID__Product_Type === value
 }
 const filterHandler = (
     value: string,

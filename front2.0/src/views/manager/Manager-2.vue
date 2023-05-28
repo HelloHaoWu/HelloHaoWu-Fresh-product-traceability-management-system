@@ -1,25 +1,31 @@
 <template>
-  <div class = 'orderInform'><strong>订单desu</strong></div>
-  <el-card class = 'orderTable'>
-    <el-table
-        :data="tableData"
-        :default-sort="{ prop: 'date', order: 'descending' }"
-        style="width: 100%"
-    >
-      <el-table-column prop="numberOfOrder" label="订单编号" width="180" sortable/>
-      <el-table-column prop="numberOfDelivery" label="配送编号" width="180" sortable/>
-      <el-table-column prop="numberOfUser" label="用户编号" width="180" sortable/>
-      <el-table-column prop="addressOfUser" label="用户地址" width="180" sortable/>
-      <el-table-column prop="lastestTime" label="最晚送达时间/送达时间" width="180" sortable/>
-      <el-table-column prop="numberOfVan" label="车辆编号" width="180" sortable/>
-      <el-table-column prop="realLocation" label="实时位置" width="180" sortable/>
-      <el-table-column prop="statusOfOrder" label="订单状态" width="180"  sortable/>
+  <div class = 'all_page'>
+    <div class = 'orderInform'><strong>订单desu</strong></div>
+    <el-card class = 'orderTable'>
+      <el-table
+          :data="tableData"
+          :default-sort="{ prop: 'date', order: 'descending' }"
+          style="width: 100%"
+      >
+        <el-table-column prop="orderdetail__OrderDetail_ID" label="订单编号" width="180" sortable/>
+        <el-table-column prop="Delivery_ID" label="配送编号" width="180" sortable/>
+        <el-table-column prop="Customer_ID" label="用户编号" width="180" sortable/>
+        <el-table-column prop="Order_Destination" label="用户地址" width="180" sortable/>
+        <el-table-column prop="Latest_Delivery_Time" label="最晚送达时间/送达时间" width="180" sortable/>
+        <el-table-column prop="Vehicle_ID_id" label="车辆编号" width="180" sortable/>
+  <!--      <el-table-column prop="realLocation" label="实时位置" width="180" sortable/>-->
+        <el-table-column prop="Current_Status" label="订单状态" width="180"  sortable/>
 
-    </el-table>
-  </el-card>
+      </el-table>
+    </el-card>
+  </div>
 </template>
 
 <style>
+.all_page{
+  margin-left: 80px;
+}
+
 .orderTable{
   color: #111111;
   height: 700px;
@@ -73,21 +79,21 @@ export default defineComponent({
 import type { TableColumnCtx } from 'element-plus'
 import {reactive} from "vue";
 interface TableData {
-  numberOfOrder:string//订单编号
-  numberOfDelivery:string//配送编号
-  numberOfUser:string//用户编号
-  addressOfUser:string//用户地址
-  lastestTime:string//最晚送达时间或送达时间
-  statusOfOrder:string//订单状态
-  numberOfVan: string//车辆编号
-  realLocation:string//实时位置
+  orderdetail__OrderDetail_ID: string//订单明细编号
+  Delivery_ID:string//配送编号
+  Customer_ID:string//用户编号
+  Order_Destination:string//用户地址
+  Latest_Delivery_Time:string//最晚送达时间或送达时间
+  Current_Status:string//订单状态
+  Vehicle_ID_id: string//车辆编号
+  // realLocation:string//实时位置
   // address: string//目标地址
-  buttonText: string//按钮内容
+  // buttonText: string//按钮内容
 }
 
-const formatter = (row: TableData, column: TableColumnCtx<TableData>) => {
-  return row.realLocation
-}
+// const formatter = (row: TableData, column: TableColumnCtx<TableData>) => {
+//   return row.realLocation
+// }
 
 </script>
 
