@@ -43,7 +43,7 @@ class Info4Customer(APIView):
                 'orderdetail__ProductBatch_ID__Product_ID__Product_Type',
                 'Customer_ID__Customer_Sex',
                 'Customer_ID__Customer_Tel',
-                'orderdetail__OrderDetail_ID'
+                'orderdetail__OrderDetail_ID',
                 'orderdetail__ProductBatch_ID__Supplier_ID',
                 'orderdetail__ProductBatch_ID__Supplier_ID__Supplier_Name',
                 'delivery__Dispatcher_ID',
@@ -59,7 +59,7 @@ class Info4Customer(APIView):
                 'orderdetail__ProductBatch_ID__Product_ID__Product_Type',
                 'Customer_ID__Customer_Sex',
                 'Customer_ID__Customer_Tel',
-                'orderdetail__OrderDetail_ID'
+                'orderdetail__OrderDetail_ID',
                 'orderdetail__ProductBatch_ID__Supplier_ID',
                 'orderdetail__ProductBatch_ID__Supplier_ID__Supplier_Name',
                 'delivery__Dispatcher_ID',
@@ -176,4 +176,37 @@ class Info4Manager3(APIView):
             )
 
         return Response(datalist)
+
+
+# Linechart In Here↓
+class Info4Linechart(APIView):
+    def get(self, request):
+        # ↓↓↓这是写死的数据, 蔡老师, 你需要做的就是把里面的各个数据填空;
+        # ↓↓就比如像我把Fruit这个数据给returndata_model一样, 然后这个Fruit就是你需要从数据库中计算的统计值, 每个统计值调数据库算一下
+        # ↓如果django有办法直接得到一个类似的数据格式的表, 那也可以不用卡死我这个模板
+        Fruit = 4.72
+        returndata_model = [
+          {
+            "Quarter": "a",
+            "Data": {
+              "Fruit": Fruit,
+              "Meat": 6.53,
+              "Vegetable": 7.53,
+              "Milk": 8.21,
+              "others": 10.32
+            }
+          },
+          {
+            "Quarter": "b",
+            "Data": {
+              "Fruit": 3.43,
+              "Meat": 5.23,
+              "Vegetable": 8.59,
+              "Milk": 1.26,
+              "others": 2.41
+            }
+          }
+        ]
+
+        return Response(returndata_model)  # 这行是怎么把数据以.json文件的格式发给前端
 
