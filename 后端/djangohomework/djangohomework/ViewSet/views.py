@@ -183,23 +183,43 @@ class Info4Piedata(APIView):
     def get(self,request):
         current_date = datetime.now()
         category_sums = {}
-        datalist = Order.objects.filter(Order_Time__year=current_date.year, 
-                                        Order_Time__month=current_date.month).values(
-            'Order__OrderDetail_Quantity',
-            'Order__OrderDetail__ProductBatch__Product_Product_Type'
+        datalist = Order.objects.filter(Order_Time__year=current_date.year,
+                                        Order_Time__month=current_date.month - 1).values(  # 这里-1是因为没有6月的销售数据
+            'orderdetail__Quantity',
+            # 'Order_ID__OrderDetail_Quantity',
+            'orderdetail__ProductBatch_ID__Product_ID__Product_Type'
                                         )
         for order in datalist:
-            category = order.Order__OrderDetail__ProductBatch__Product_Product_Type
-            amount = order.Order__OrderDetail_Quantity
+            amount = order['orderdetail__Quantity']
+            category = order['orderdetail__ProductBatch_ID__Product_ID__Product_Type']
             if category in category_sums:
                 # 如果分类已经存在，将当前订单的金额加到对应分类的总和中
                 category_sums[category] += amount
             else:
                 # 如果分类不存在，将当前订单的金额作为该分类的初始总和
                 category_sums[category] = amount
-        data4pie = []
-        for k,v in category_sums:
-            data4pie.append({"种类": k,"本月总销量": v})
+        data4pie = [
+            {
+                "种类": list(category_sums.keys())[0],
+                "上月总销量": category_sums[list(category_sums.keys())[0]]
+            },
+            {
+                "种类": list(category_sums.keys())[1],
+                "上月总销量": category_sums[list(category_sums.keys())[1]]
+            },
+            {
+                "种类": list(category_sums.keys())[2],
+                "上月总销量": category_sums[list(category_sums.keys())[2]]
+            },
+            {
+                "种类": list(category_sums.keys())[3],
+                "上月总销量": category_sums[list(category_sums.keys())[3]]
+            },
+            {
+                "种类": list(category_sums.keys())[4],
+                "上月总销量": category_sums[list(category_sums.keys())[4]]
+            }
+        ]
         return Response(data4pie)
 
 # Linechart In Here↓
