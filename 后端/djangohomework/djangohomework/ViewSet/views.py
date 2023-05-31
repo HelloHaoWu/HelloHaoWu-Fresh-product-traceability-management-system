@@ -177,6 +177,30 @@ class Info4Manager3(APIView):
 
         return Response(datalist)
 
+from datetime import datetime
+
+class Info4Piedata(APIView):
+    def get(self,request):
+        current_date = datetime.now()
+        category_sums = {}
+        datalist = Order.objects.filter(Order_Time__year=current_date.year, 
+                                        Order_Time__month=current_date.month).values(
+            'Order__OrderDetail_Quantity',
+            'Order__OrderDetail__ProductBatch__Product_Product_Type'
+                                        )
+        for order in datalist:
+            category = order.Order__OrderDetail_Quantity
+            amount = order.Order__OrderDetail_Quantity
+            if category in category_sums:
+                # 如果分类已经存在，将当前订单的金额加到对应分类的总和中
+                category_sums[category] += amount
+            else:
+                # 如果分类不存在，将当前订单的金额作为该分类的初始总和
+                category_sums[category] = amount
+        data4pie = []
+        for k,v in category_sums:
+            data4pie.append({"种类": k,"本月总销量": v})
+        return Response(data4pie)
 
 # Linechart In Here↓
 class Info4Linechart(APIView):
