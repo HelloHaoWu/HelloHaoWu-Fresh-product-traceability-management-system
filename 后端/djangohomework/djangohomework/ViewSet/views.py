@@ -189,7 +189,7 @@ class Info4Piedata(APIView):
             'Order__OrderDetail__ProductBatch__Product_Product_Type'
                                         )
         for order in datalist:
-            category = order.Order__OrderDetail_Quantity
+            category = order.Order__OrderDetail__ProductBatch__Product_Product_Type
             amount = order.Order__OrderDetail_Quantity
             if category in category_sums:
                 # 如果分类已经存在，将当前订单的金额加到对应分类的总和中
