@@ -198,7 +198,7 @@ class Info4Piedata(APIView):
             else:
                 # 如果分类不存在，将当前订单的金额作为该分类的初始总和
                 category_sums[category] = amount
-        data4pie = [
+        '''data4pie = [
             {
                 "种类": list(category_sums.keys())[0],
                 "上月总销量": category_sums[list(category_sums.keys())[0]]
@@ -219,7 +219,10 @@ class Info4Piedata(APIView):
                 "种类": list(category_sums.keys())[4],
                 "上月总销量": category_sums[list(category_sums.keys())[4]]
             }
-        ]
+        ]'''
+        data4pie = []
+        for k,v in category_sums.items():
+            data4pie.append({"种类":k,"上月总销量":v})
         return Response(data4pie)
 
 # Linechart In Here↓
