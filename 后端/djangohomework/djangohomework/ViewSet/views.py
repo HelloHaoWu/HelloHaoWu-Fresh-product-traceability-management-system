@@ -317,7 +317,6 @@ class Info4form2(APIView):
 class Info4Linechart(APIView):
     def get(self, request):
         current_date = datetime.now()
-        category_sums = {}
         datalist = Order.objects.filter(Order_Time__year=current_date.year).values(  # 这里-1是因为没有6月的销售数据
             'Order_Time',
             'orderdetail__Quantity',
@@ -336,6 +335,38 @@ class Info4Linechart(APIView):
         print(sale_result)
         jsondict = {"legend":[],
                     "xAxis": ["a","b","c","d"],
+                    }
+        linecount = 1
+        for k,v in sale_result.items():
+            jsondict['legend'].append(k)
+            jsondict['line'+str(linecount)] = {
+                "name":k,
+                "data":v
+            }
+            linecount += 1
+        return Response(jsondict)
+    
+class Info4Linechartfixed(APIView):
+    def get(self, request):
+        current_date = datetime.now()
+        datalist = Order.objects.filter(Order_Time__year=current_date.year).values(  # 这里-1是因为没有6月的销售数据
+            'Order_Time',
+            'orderdetail__Quantity',
+            'orderdetail__ProductBatch_ID__Product_ID__Product_Type'
+        )
+        sale_result = {}
+        for line in datalist:
+            day = int(str(line['Order_Time'])[8:10])
+            quantity = line['orderdetail__Quantity']
+            ptype = line['orderdetail__ProductBatch_ID__Product_ID__Product_Type']
+            if ptype in sale_result:
+                sale_result[ptype][day-25] += quantity
+            else:
+                sale_result[ptype] = [0,0,0,0]
+                sale_result[ptype][day-25] += quantity
+        print(sale_result)
+        jsondict = {"legend":[],
+                    "xAxis": ["6月1日","6月2日","6月3日","6月4日"],
                     }
         linecount = 1
         for k,v in sale_result.items():
