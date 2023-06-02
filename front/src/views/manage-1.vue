@@ -30,14 +30,15 @@
       </el-card>
     </div>
     <el-card class="box-card2-1">
-      <div id="main" style="width: 1600px;height:400px;"></div>
+      <div id="main" style="width: 1650px;height:400px;"></div>
     </el-card>
     <div class = 'row3'>
       <el-card class="box-card3-1">
         <div v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</div>
       </el-card>
-      <el-card class="box-card3-2">
-        <div v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</div>
+      <el-card class="box-card3-2" body-style="height: 320px; display: flex; justify-content:center; align-items:center">
+<!--        <div v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</div>-->
+        <div id="barchart" style="height: 200%; width: 100%;"></div>
       </el-card>
     </div>
   </div>
@@ -47,7 +48,8 @@
 
 <style>
 .all_page{
-  margin-left: 60px;
+  /*display:flex;*/
+  margin-left: 50px;
 }
 .card-header {
   display: flex;
@@ -67,6 +69,7 @@
   display:flex;
   margin-top: 20px;
   margin-left: -60px;
+  margin-right: 60px;
 }
 .box-card1-1 {
   flex-basis: 33%;
@@ -83,6 +86,7 @@
   margin-top: 30px;
   width : 1600px;
   margin-left: -60px;
+  margin-right: 1000px;
 }
 
 .row3{
@@ -90,6 +94,7 @@
   margin-top: 30px;
   margin-bottom: 20px;
   margin-left: -70px;
+  margin-right: -63px;
 }
 
 .box-card3-1 {
@@ -98,9 +103,14 @@
   hieght :500px;
 }
 .box-card3-2 {
+  margin_top : 200px;
   flex-basis: 45%;
-  margin-left: 10px;
-  height: 500px;
+  margin-left: 40px;
+  height: 430px;
+  /* 新增样式 */
+  width: calc(45% - 10px);
+  margin-right: 10px;
+  padding-left: 60px; /* 增加左侧padding */
 }
 
 </style>
@@ -113,7 +123,8 @@ import axios from "axios";
 
 export default defineComponent({
   mounted() {
-
+    let myChart = echarts.init(document.getElementById('barchart'));//柱状图
+    myChart.setOption(option);
     const chartIds = ['row1-1', 'row1-2', 'row1-3'];
     const optionIds = [option1,option2,option3]
     // console.log(option1)
@@ -138,6 +149,7 @@ export default defineComponent({
     let option1 = ref([]);option1 = reactive(option1)
     let option2 = ref([]);option2 = reactive(option2)
     let option3 = ref([]);option3 = reactive(option3)
+    let option = ref([]);option  = reactive(option)
     const getTableList = async () => {
       await axios.get('https://www.fastmock.site/mock/4adca991e257e0e3a89c8de7cad6295e/api/api/manage-1').then((res)=>{
         // await axios.get('http://43.143.167.222:8020/Testdata/').then((res)=>{
@@ -358,4 +370,39 @@ let option33 = {
     }
   ]
 }
+// 指定图表的配置项和数据
+let option = {
+  title: {
+    text: 'my echarts'
+  },
+  tooltip: {},
+  // 设置 legend，包含两个 data，分别对应两条线的名称
+  legend: {
+    data: ['苹果', '梨子']
+  },
+  xAxis: {
+    data: ['A', 'B', 'C', 'D', 'E'],
+    name: '水果名', // 横坐标名称
+    nameLocation: "middle" // 横坐标名称位置
+  },
+  yAxis: {
+    name: '数量', // 纵坐标名称
+    nameLocation: "middle", // 纵坐标名称位置
+  },
+  // 设置颜色数组
+  color: ['#F08080', '#00FF00'],
+  // 设置 series，分别设置两个数据系列的名称（name）、数据（data）、线条颜色等属性
+  series: [
+    {
+      name: '苹果',
+      data: [30, 12, 18, 23, 41],
+      type: 'bar'
+    },
+    {
+      name: '梨子',
+      data: [15, 25, 13, 32, 10],
+      type: 'bar'
+    }
+  ]
+};
 </script>
