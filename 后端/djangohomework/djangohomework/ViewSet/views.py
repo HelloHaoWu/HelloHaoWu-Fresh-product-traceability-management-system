@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from datetime import datetime
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -177,9 +178,6 @@ class Info4Manager3(APIView):
 
         return Response(datalist)
 
-from datetime import datetime
-import json
-
 class Info4Piedata(APIView):
     def get(self,request):
         current_date = datetime.now()
@@ -316,35 +314,36 @@ class Info4form2(APIView):
             })
         return Response(jsonlist)
 
-# Linechart In Here↓
 class Info4Linechart(APIView):
     def get(self, request):
-        # ↓↓↓这是写死的数据, 蔡老师, 你需要做的就是把里面的各个数据填空;
-        # ↓↓就比如像我把Fruit这个数据给returndata_model一样, 然后这个Fruit就是你需要从数据库中计算的统计值, 每个统计值调数据库算一下
-        # ↓如果django有办法直接得到一个类似的数据格式的表, 那也可以不用卡死我这个模板
-        Fruit = 4.72
-        returndata_model = [
-          {
-            "Quarter": "a",
-            "Data": {
-              "Fruit": Fruit,
-              "Meat": 6.53,
-              "Vegetable": 7.53,
-              "Milk": 8.21,
-              "others": 10.32
+        current_date = datetime.now()
+        category_sums = {}
+        datalist = Order.objects.filter(Order_Time__year=current_date.year).values(  # 这里-1是因为没有6月的销售数据
+            'Order_Time',
+            'orderdetail__Quantity',
+            'orderdetail__ProductBatch_ID__Product_ID__Product_Type'
+        )
+        sale_result = {}
+        for line in datalist:
+            month = int(str(line['Order_Time'])[5:7])
+            quantity = line['orderdetail__Quantity']
+            ptype = line['orderdetail__ProductBatch_ID__Product_ID__Product_Type']
+            if ptype in sale_result:
+                sale_result[ptype][((month - 1) // 3 + 1)] += quantity
+            else:
+                sale_result[ptype] = [0,0,0,0]
+                sale_result[ptype][((month - 1) // 3 + 1)] += quantity
+        print(sale_result)
+        jsondict = {"legend":[],
+                    "xAxis": ["a","b","c","d"],
+                    }
+        linecount = 1
+        for k,v in sale_result.items():
+            jsondict['legend'].append(k)
+            jsondict['line'+str(linecount)] = {
+                "name":k,
+                "data":v
             }
-          },
-          {
-            "Quarter": "b",
-            "Data": {
-              "Fruit": 3.43,
-              "Meat": 5.23,
-              "Vegetable": 8.59,
-              "Milk": 1.26,
-              "others": 2.41
-            }
-          }
-        ]
-
-        return Response(returndata_model)  # 这行是怎么把数据以.json文件的格式发给前端
+            linecount += 1
+        return Response(jsondict)
 
