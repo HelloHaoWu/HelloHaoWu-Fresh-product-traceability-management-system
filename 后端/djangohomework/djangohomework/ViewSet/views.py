@@ -287,6 +287,35 @@ class Info4form1(APIView):
             jsonlist.append({'生鲜种类':k,'库存总量':v})
         return Response(jsonlist)
 
+class Info4form2(APIView):
+    def get(self,request):
+        '''datalist = OrderDetail.objects.values(
+            'OrderDetail_ID',
+            'Order_ID__Order_Time',
+                                        )
+        jsonlist = []
+        for line in datalist:
+            jsonlist.append({
+                'orderdetail__OrderDetail_ID':line['OrderDetail_ID'],
+                'Order_Time':line['Order_ID__Order_Time']
+                })'''
+        statusdic = {0:'未发货',1:'配送中',2:'已完成'}
+        recent_orders = Order.objects.order_by('Order_Time').values(
+            'Order_ID',
+            'Customer_ID__Customer_Name',
+            'Order_Time',
+            'delivery__Current_Status'
+            )[10:]
+        jsonlist = []
+        for line in recent_orders:
+            jsonlist.insert(0,{
+                "订单ID": line['Order_ID'],
+                "订购者": line['Customer_ID__Customer_Name'],
+                "下单时间": line['Order_Time'],
+                "订单状态": statusdic[line['delivery__Current_Status']]
+            })
+        return Response(jsonlist)
+
 # Linechart In Here↓
 class Info4Linechart(APIView):
     def get(self, request):
