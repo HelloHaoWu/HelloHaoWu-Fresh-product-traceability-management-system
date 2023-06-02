@@ -377,30 +377,25 @@ let option = {
   },
   tooltip: {},
   // 设置 legend，包含两个 data，分别对应两条线的名称
-  legend: {
-    data: ['苹果', '梨子']
-  },
+  // legend: {
+  //   data: ['苹果', '梨子']
+  // },
   xAxis: {
     data: ['A', 'B', 'C', 'D', 'E'],
-    name: '水果名', // 横坐标名称
+    name: '', // 横坐标名称
     nameLocation: "middle" // 横坐标名称位置
   },
   yAxis: {
-    name: '数量', // 纵坐标名称
+    name: '', // 纵坐标名称
     nameLocation: "middle", // 纵坐标名称位置
   },
   // 设置颜色数组
-  color: ['#F08080', '#00FF00'],
+  color: ['#999999'],
   // 设置 series，分别设置两个数据系列的名称（name）、数据（data）、线条颜色等属性
   series: [
     {
-      name: '苹果',
+      name: '现存量',
       data: [30, 12, 18, 23, 41],
-      type: 'bar'
-    },
-    {
-      name: '梨子',
-      data: [15, 25, 13, 32, 10],
       type: 'bar'
     }
   ]
