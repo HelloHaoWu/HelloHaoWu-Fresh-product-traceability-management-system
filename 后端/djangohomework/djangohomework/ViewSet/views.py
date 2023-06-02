@@ -347,3 +347,19 @@ class Info4Linechart(APIView):
             linecount += 1
         return Response(jsondict)
 
+class UpdateOrderStatus(APIView):
+    def post(self, request):
+        order_id = request.data.get('order_id')  # 假设前端传递的订单编号字段名为'order_id'
+        try:
+            delivery = Delivery.objects.get(Order_ID=order_id)
+            print(delivery.Current_Status)
+            if delivery.Current_Status == 0:
+                delivery.Current_Status = 1  # 将订单状态更新为"1"
+            elif delivery.Current_Status == 1:
+                delivery.Current_Status = 2
+            else:
+                delivery.Current_Status == 0
+            delivery.save()
+            return Response({'success': True})
+        except Order.DoesNotExist:
+            return Response({'success': False, 'error': '订单不存在'})
