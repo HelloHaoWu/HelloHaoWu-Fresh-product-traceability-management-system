@@ -219,10 +219,13 @@ export default {
 </script>
 
 <style>
-/*===== 谷歌字体 =====*/
-/*@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");*/
-
-/*===== css变量老师家哦 =====*/
+.right-side {
+  position: absolute; /* 将元素脱离文档流 */
+  top: 20px; /* 调整元素在垂直方向上的位置 */
+  left: 145px; /* 调整元素在水平方向上的位置 */
+  right: 0; /* 元素的右侧与父元素的右侧保持对齐 */
+  bottom: 0; /* 元素的底部与父元素的底部保持对齐 */
+}
 :root{
   --nav-width: 92px;
 
