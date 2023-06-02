@@ -178,6 +178,7 @@ class Info4Manager3(APIView):
         return Response(datalist)
 
 from datetime import datetime
+import json
 
 class Info4Piedata(APIView):
     def get(self,request):
@@ -224,6 +225,67 @@ class Info4Piedata(APIView):
         for k,v in category_sums.items():
             data4pie.append({"种类":k,"上月总销量":v})
         return Response(data4pie)
+    
+class Info4Piedata_sub(APIView):
+    def get(self,request):
+        datalist = WareHouse.objects.values(
+            'WareHouse_ID',
+            'productbatch__ProductBatch_Current_Inventory',
+            'productbatch__Product_ID__Product_Type'
+                                        )
+        inventory = {}
+        for line in datalist:
+            warehouse = line['WareHouse_ID']
+            quantity = line['productbatch__ProductBatch_Current_Inventory']
+            ptype = line['productbatch__Product_ID__Product_Type']
+            if quantity != None:
+                if warehouse in inventory:
+                    inventory[warehouse]['total'] += quantity
+                    if ptype in inventory[warehouse]:
+                        inventory[warehouse][ptype] += quantity
+                    else:
+                        inventory[warehouse][ptype] = quantity
+                
+                else:
+                    inventory[warehouse] = {}
+                    inventory[warehouse]['total'] = quantity
+                    inventory[warehouse][ptype] = quantity
+        # 根据"total"字段进行排序
+        sorted_dict = sorted(inventory.items(), key=lambda x: x[1]["total"], reverse=True)
+        # 选出前三个编号
+        top_three = [item[0] for item in sorted_dict[:3]]
+        result = {'piedata1':{},'piedata2':{},'piedata3':{}}
+        for index in range(3):
+            for k,v in inventory[top_three[index]].items():
+                if k != 'total':
+                    result['piedata'+str(index+1)][k] = v
+        jsondict = {'piedata1':[],'piedata2':[],'piedata3':[]}
+        for key,value in result.items():
+            for k,v in value.items():
+                typeline = {'value':v,'name':k}
+                jsondict[key].append(typeline)
+        return Response(jsondict)
+
+class Info4form1(APIView):
+    def get(self,request):
+        datalist = WareHouse.objects.values(
+            'WareHouse_ID',
+            'productbatch__ProductBatch_Current_Inventory',
+            'productbatch__Product_ID__Product_Type'
+                                        )
+        typedict = {}
+        for line in datalist:
+            ptype = line['productbatch__Product_ID__Product_Type']
+            quantity = line['productbatch__ProductBatch_Current_Inventory']
+            if quantity != None:
+                if ptype in typedict:
+                    typedict[ptype] += quantity
+                else:
+                    typedict[ptype] = quantity
+        jsonlist = []
+        for k,v in typedict.items():
+            jsonlist.append({'生鲜种类':k,'库存总量':v})
+        return Response(jsonlist)
 
 # Linechart In Here↓
 class Info4Linechart(APIView):

@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 
-from ViewSet.views import Info4Customer, Info4Delivery, Info4Manager2, Info4Manager3, Info4Piedata
+from ViewSet.views import Info4Customer, Info4Delivery, Info4Manager2, Info4Manager3, Info4Piedata, Info4Piedata_sub, Info4form1
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,7 @@ urlpatterns = [
     path('Delivery/', Info4Delivery.as_view()),
     path('Manager2/', Info4Manager2.as_view()),
     path('Manager3/', Info4Manager3.as_view()),
-    path('Piedata/', Info4Piedata.as_view())
+    path('Piedata/', Info4Piedata.as_view()),
+    path('Piedata_sub/', Info4Piedata_sub.as_view()),
+    path('form1/', Info4form1.as_view())
 ]
