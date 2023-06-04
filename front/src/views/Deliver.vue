@@ -90,8 +90,10 @@ export default defineComponent({
           tableData.value = res.data.map(item => {
             if (item.Current_Status === 2) {
               return {...item, buttonText: '已送达'}
+            } else if(item.Current_Status === 1){
+              return {...item, buttonText: '配送中'}
             } else {
-              return {...item, buttonText: '订单未送达'}
+              return {...item, buttonText: '即将配送'}
             }
           })
       }
@@ -101,12 +103,19 @@ export default defineComponent({
     });
     const changeStatusOfOrder = (row_index: number, row: any) => {
       const targetRow = tableData.value[row_index];
-      targetRow.Current_Status = '2';
-      const completionTime = new Date().toISOString(); // 获取系统当前时间
-      targetRow.Completion_Time = completionTime; // 修改 Completion_Time 属性
-      row.isActive = true;
-      targetRow.buttonText = '已送达';
-      // 其他操作
+
+      if (targetRow.Current_Status == 0) {
+        targetRow.Current_Status = '1';
+        targetRow.buttonText = '配送中';
+      } else if (targetRow.Current_Status == 1){
+        targetRow.Current_Status = '2';
+        const completionTime = new Date().toISOString(); // 获取系统当前时间
+        targetRow.Completion_Time = completionTime; // 修改 Completion_Time 属性
+        row.isActive = true;
+        targetRow.buttonText = '已送达';
+      } else {
+        targetRow.Current_Status = '2';
+      }
     };
 
 
