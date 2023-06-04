@@ -6,17 +6,18 @@
           :data="tableData"
           :default-sort="{ prop: 'date', order: 'descending' }"
           style="width: 100%"
+          class = 'myform'
       >
-        <!--      <el-table-column prop="numberOfBatch" label="批次编号" width="180" sortable/>-->
-        <el-table-column prop="Product_ID_id" label="产品编号" width="180" sortable/>
-        <el-table-column prop="WareHouse_ID_id" label="仓库编号" width="180" sortable/>
-        <el-table-column prop="Supplier_ID_id" label="供应商编号" width="180" sortable/>
-        <el-table-column prop="orderdetail__ProductBatch_ID__Product_ID__Product_Type" label="种类" width="180" sortable
+        <el-table-column prop="ProductBatch_ID" label="批次编号" width="180" sortable/>
+        <el-table-column prop="Product_ID" label="产品编号" width="180" sortable/>
+        <el-table-column prop="WareHouse_ID" label="仓库编号" width="180" sortable/>
+        <el-table-column prop="Supplier_ID" label="供应商编号" width="180" sortable/>
+        <el-table-column prop="Product_ID__Product_Type" label="种类" width="180" sortable
                          :filters="[
                               { text: '蔬菜', value: '蔬菜' },
                               { text: '肉类', value: '肉类' },
-                              { text: '海鲜', value: '海鲜' },
-                              { text: '蛋类', value: '蛋类' },
+                              { text: '水果', value: '水果' },
+                              { text: '奶类', value: '奶类' },
                             ]"
                          :filter-method="filterHandler"/>
         <el-table-column prop="ProductBatch_Supply_Amount" label="入库量" width="180" sortable/>
@@ -28,6 +29,11 @@
 </template>
 
 <style>
+.myform{
+  height: 800px;
+  overflow: auto;
+  position: relative;
+}
 .all_page{
   margin-left: 80px;
 }
@@ -56,9 +62,9 @@ export default defineComponent({
     tableData = reactive(tableData)
 
     const getTableList = async () => {
-      await axios.get('https://www.fastmock.site/mock/4adca991e257e0e3a89c8de7cad6295e/api/api').then((res)=>{
-        console.log(res.data.tableData);
-        tableData.value = res.data.tableData
+      await axios.get('http://43.143.167.222:8020/Manager3/').then((res)=>{
+        console.log(res.data);
+        tableData.value = res.data
       })
     }
     onMounted(() => {
@@ -95,6 +101,13 @@ interface TableData {
   ProductBatch_Expiration_Time:string//到期时间
 }
 
-
+const filterHandler = (
+    value: string,
+    row: TableData,
+    column: TableColumnCtx<TableData>
+) => {
+  const property = column['property']
+  return row[property] === value
+}
 </script>
 

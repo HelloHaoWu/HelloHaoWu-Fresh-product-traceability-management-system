@@ -6,14 +6,15 @@
           :data="tableData"
           :default-sort="{ prop: 'date', order: 'descending' }"
           style="width: 100%"
+          class = 'myform'
       >
-        <el-table-column prop="orderdetail__OrderDetail_ID" label="订单编号" width="180" sortable/>
-        <el-table-column prop="Delivery_ID" label="配送编号" width="180" sortable/>
-        <el-table-column prop="Customer_ID" label="用户编号" width="180" sortable/>
-        <el-table-column prop="Order_Destination" label="用户地址" width="180" sortable/>
-        <el-table-column prop="Latest_Delivery_Time" label="最晚送达时间/送达时间" width="180" sortable/>
-        <el-table-column prop="Vehicle_ID_id" label="车辆编号" width="180" sortable/>
-        <!--      <el-table-column prop="realLocation" label="实时位置" width="180" sortable/>-->
+        <el-table-column prop="Order_ID" label="订单编号" width="130" sortable/>
+        <el-table-column prop="Dispatcher_ID" label="配送编号" width="130" sortable/>
+        <el-table-column prop="Order_ID__Customer_ID" label="用户编号" width="130" sortable/>
+        <el-table-column prop="Order_ID__Order_Destination" label="用户地址" width="220" sortable/>
+        <el-table-column prop="Order_ID__orderdetail__ProductBatch_ID__ProductBatch_Expiration_Time" label="预期送达时间" width="220" sortable/>
+        <el-table-column prop="Vehicle_ID" label="车辆编号" width="220" sortable/>
+        <el-table-column prop="Current_Position" label="实时位置" width="240" sortable/>
         <el-table-column prop="Current_Status" label="订单状态" width="180"  sortable/>
 
       </el-table>
@@ -22,6 +23,11 @@
 </template>
 
 <style>
+.myform{
+  height: 800px;
+  overflow: auto;
+  position: relative;
+}
 .all_page{
   margin-left: 80px;
 }
@@ -51,9 +57,9 @@ export default defineComponent({
     tableData = reactive(tableData)
 
     const getTableList = async () => {
-      await axios.get('https://www.fastmock.site/mock/4adca991e257e0e3a89c8de7cad6295e/api/api').then((res)=>{
-        console.log(res.data.tableData);
-        tableData.value = res.data.tableData
+      await axios.get('http://43.143.167.222:8020/Manager2/').then((res)=>{
+        console.log(res.data);
+        tableData.value = res.data
       })
     }
     onMounted(() => {
