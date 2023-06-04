@@ -18,8 +18,11 @@
           <el-table-column>
             <template #default="scope">
               <el-button
-                  :class="{'active-button': scope.row.isActive, 'statusButton': !scope.row.isActive}"
+                  :class="['statusButton', statusStyle(scope.row.Current_Status)]"
                   @click="changeStatusOfOrder(scope.$index,scope.row)">
+<!--              <el-button-->
+<!--                  :class="{'active-button': scope.row.isActive, 'statusButton': !scope.row.isActive}"-->
+<!--                  @click="changeStatusOfOrder(scope.$index,scope.row)">-->
                 <strong>{{ scope.row.buttonText }}</strong>
 <!--                    <div class = 'mytext'>-->
 <!--                      <strong>订单未送达</strong>-->
@@ -51,19 +54,30 @@
   margin-right: 30px;
 
 }
-/*.statusButton{*/
-/*  width: 120px;*/
-/*  background-color: red;*/
-/*  opacity: 0.7;*/
-/*  color: black;*/
-/*  font-size: 14px;*/
-/*}*/
-.statusButton{
+.statusButton {
+  border-radius: 4px;
   width: 120px;
-  background: #B0C4DE;
   opacity: 0.9;
-  color: #333333;
 }
+.statusRed {
+  width: 120px;
+  opacity: 0.7;
+  background-color: #C71585;
+  color: #fff;
+}
+.statusYellow {
+  width: 120px;
+  opacity: 0.7;
+  background-color: #FFD700;
+  color: #fff;
+}
+.statusGreen {
+  width: 120px;
+  background-color: #00CED1;
+  opacity: 0.5;
+  color: #fff;
+}
+
 .active-button {
   width: 120px;
   background: #B0C4DE;
@@ -123,6 +137,26 @@ export default defineComponent({
       tableData,
       changeStatusOfOrder,
     }
+  },
+  methods:{
+    statusStyle(status) {
+      // 根据 status 的值返回不同的样式类名
+      console.log(status)
+      switch (status) {
+        case 0:
+          return 'statusRed';
+        case '0':
+          return 'statusRed';
+        case 1:
+          return 'statusYellow';
+        case '1':
+          return 'statusYellow';
+        case 2:
+          return 'statusGreen';
+        case '2':
+          return 'statusGreen';
+      }
+    },
   }
 })
 </script>
@@ -140,10 +174,6 @@ interface TableData {
   // address: string//目标地址
   buttonText: string//按钮内容
 }
-
-// const formatter = (row: TableData, column: TableColumnCtx<TableData>) => {
-//   return row.realLocation
-// }
 
 </script>
 
