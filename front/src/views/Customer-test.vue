@@ -1,85 +1,82 @@
 <template>
-  <el-row>
-    <el-col :span="24">
-      <el-card class="customerCard">
-        <!--        table组件内容-->
-        <!--                    data就是table数据部分-->
-        <el-button @click="resetDateFilter">reset date filter</el-button>
-        <el-button @click="clearFilter">reset all filters</el-button>
-        <el-table ref="tableRef" row-key="date" :data="tableData" stripe style="width: 100%">
-          <el-table-column type="expand" class="tableExpander" label = '全部展开' width="180">
-            <template #default="props">
-              <div class="table_expander_container">
-                <el-card class="table_expander_card">
-                  <p m="t-0 b-2">目标地址:{{ props.row.Order_Destination }}</p>
-                  <p m="t-0 b-2">客户性别:{{ props.row.Customer_ID__Customer_Sex}}</p>
-                  <p m="t-0 b-2">客户姓名:{{ props.row.Customer_ID__Customer_Name }}</p>
-                  <h3>产品溯源系统跟踪信息：</h3><br>
-                  <el-card class = 'inner_card'>
-                    <el-table :data="props.row.family" :border="childBorder" :key = props.row.orderdetail__OrderDetail_ID>
-                      <el-table-column label="订单明细编号" prop="orderdetail__OrderDetail_ID" />
-                      <el-table-column label="供应商编号" prop="orderdetail__ProductBatch_ID__Supplier_ID" />
-                      <el-table-column label="供应商名称" prop="orderdetail__ProductBatch_ID__Supplier_ID__Supplier_Name" />
-                      <el-table-column label="配送员编号" prop="delivery__Dispatcher_ID" />
-                    </el-table>
-                  </el-card>
+  <div class="customerdata">
+    <el-card class="customerCard">
+      <!--        table组件内容-->
+      <!--                    data就是table数据部分-->
+      <el-button @click="resetDateFilter">reset date filter</el-button>
+      <el-button @click="clearFilter">reset all filters</el-button>
+      <el-table ref="tableRef" row-key="date" :data="tableData" stripe style="width: 100%">
+        <el-table-column type="expand" class="tableExpander" label = '全部展开' width="180">
+          <template #default="props">
+            <div class="table_expander_container">
+              <el-card class="table_expander_card">
+                <p m="t-0 b-2">目标地址:{{ props.row.Order_Destination }}</p>
+                <p m="t-0 b-2">客户性别:{{ props.row.Customer_ID__Customer_Sex}}</p>
+                <p m="t-0 b-2">客户姓名:{{ props.row.Customer_ID__Customer_Name }}</p>
+                <h3>产品溯源系统跟踪信息：</h3><br>
+                <el-card class = 'inner_card'>
+                  <el-table :data="props.row.family" :border="childBorder" :key = props.row.orderdetail__OrderDetail_ID>
+                    <el-table-column label="订单明细编号" prop="orderdetail__OrderDetail_ID" />
+                    <el-table-column label="供应商编号" prop="orderdetail__ProductBatch_ID__Supplier_ID" />
+                    <el-table-column label="供应商名称" prop="orderdetail__ProductBatch_ID__Supplier_ID__Supplier_Name" />
+                    <el-table-column label="配送员编号" prop="delivery__Dispatcher_ID" />
+                  </el-table>
                 </el-card>
-              </div>
-            </template>
-          </el-table-column>
+              </el-card>
+            </div>
+          </template>
+        </el-table-column>
 
-          <!--        </div>-->
-          <el-table-column
-              prop="Order_Time"
-              label="下单日期"
-              width="180"
-              column-key="Order_Time"
-              :filters="[
-                            { text: '2023-05-23T17:23:00Z', value: '2023-05-23T17:23:00Z' },
-                            { text: '2023-05-23T18:45:00Z', value: '2023-05-23T18:45:00Z' },
-                            { text: '2023-05-23T19:12:00Z', value: '2023-05-23T19:12:00Z' },
-                            { text: '2023-05-23T20:59:00Z', value: '2023-05-23T20:59:00Z' },
-                          ]"
-              :filter-method="filterHandler"
-          />
-          <el-table-column prop="Customer_ID__Customer_Name" label="客户姓名" width="180" />
-          <el-table-column prop="Order_Destination" label="目标地址" :formatter="formatter" />
+        <!--        </div>-->
+        <el-table-column
+            prop="Order_Time"
+            label="下单日期"
+            width="180"
+            column-key="Order_Time"
+            :filters="[
+                          { text: '2023-05-23T17:23:00Z', value: '2023-05-23T17:23:00Z' },
+                          { text: '2023-05-23T18:45:00Z', value: '2023-05-23T18:45:00Z' },
+                          { text: '2023-05-23T19:12:00Z', value: '2023-05-23T19:12:00Z' },
+                          { text: '2023-05-23T20:59:00Z', value: '2023-05-23T20:59:00Z' },
+                        ]"
+            :filter-method="filterHandler"
+        />
+        <el-table-column prop="Customer_ID__Customer_Name" label="客户姓名" width="180" />
+        <el-table-column prop="Order_Destination" label="目标地址" :formatter="formatter" />
 
-          <el-table-column
-              prop="tag"
-              label="Tag"
-              width="100"
-              :filters="[
-                  { text: '肉类', value: '肉类' },
-                  { text: '蔬菜', value: '蔬菜' },
-                  { text: '奶类', value: '奶类' },
-                  { text: '水果', value: '水果' },
-                ]"
-              :filter-method="filterTag"
-              filter-placement="bottom-end">
-            <template #default="scope">
-              <el-tag
-                  :type="getTagColor(scope.row.orderdetail__ProductBatch_ID__Product_ID__Product_Type)"
-                  disable-transitions>
-                {{ scope.row.orderdetail__ProductBatch_ID__Product_ID__Product_Type }}
-              </el-tag>
-            </template>
-          </el-table-column>
-        </el-table>
+        <el-table-column
+            prop="tag"
+            label="Tag"
+            width="100"
+            :filters="[
+                { text: '肉类', value: '肉类' },
+                { text: '蔬菜', value: '蔬菜' },
+                { text: '奶类', value: '奶类' },
+                { text: '水果', value: '水果' },
+              ]"
+            :filter-method="filterTag"
+            filter-placement="bottom-end">
+          <template #default="scope">
+            <el-tag
+                :type="getTagColor(scope.row.orderdetail__ProductBatch_ID__Product_ID__Product_Type)"
+                disable-transitions>
+              {{ scope.row.orderdetail__ProductBatch_ID__Product_ID__Product_Type }}
+            </el-tag>
+          </template>
+        </el-table-column>
+      </el-table>
 
-      </el-card>
-    </el-col>
-  </el-row>
-
+    </el-card>
+  </div>
 </template>
 
 <style>
 .customerCard{
   color: #111111;
   margin-top: 50px;
-  margin-left: 80px;
-  margin-right: 30px;
-  max-height: 650px;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  max-height: 87vh;
   overflow-y: scroll;
   margin-bottom: 10px !important;
 }
