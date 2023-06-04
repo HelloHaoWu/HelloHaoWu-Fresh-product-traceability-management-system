@@ -105,6 +105,20 @@ class Info4Delivery(APIView):
             )
 
         return Response(datalist)
+    
+    def put(self, request, id):
+        try:
+            order = Delivery.objects.get(Order_id=id)
+            if order.Current_Status == 0:
+                order.Current_Status = 1
+            elif order.Current_Status == 1:
+                order.Current_Status = 2
+            else:
+                order.Current_Status = 0
+            order.save()
+            return Response({'success': True})
+        except Order.DoesNotExist:
+            return Response({'success': False, 'error': '订单不存在'})
 
 
 class Info4Manager2(APIView):
