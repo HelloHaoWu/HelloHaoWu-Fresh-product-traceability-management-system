@@ -2,7 +2,7 @@
   <div class="box">
     <div class="content">
       <div class="login-wrapper">
-        <h1>登录</h1>
+        <h1>超市发线上生鲜平台管理系统登录</h1>
         <!-- ↓加.prevent点击时候不会刷新界面 -->
         <form @submit.prevent="login" class="login-form">
           <div class="username form-item">
@@ -41,6 +41,7 @@ export const useUserStore = defineStore('userid', {
   state: () => {
     return {
       user: '',
+      id: 0,
       isfresh: false
     }
   }
@@ -66,6 +67,9 @@ export default {
       if((this.username === "manager" || this.username === "customer" || this.username === "dispatcher" || this.username === "supplier") && this.password === "123456") {
         const store = useUserStore();
         store.user = this.username;
+        if(this.username === "customer" || this.username === "dispatcher" || this.username === "supplier") {
+          store.id = 4;
+        }
         this.$router.push("/home")
       }
       else {

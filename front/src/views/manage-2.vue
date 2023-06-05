@@ -1,41 +1,43 @@
 <template>
-  <div class = 'all_page'>
-    <div class = 'orderInform'><strong>订单desu</strong></div>
-    <el-card class = 'orderTable'>
+  <div class='total_order'>
+    <div class='orderInform'><strong>订单总览</strong></div>
+    <el-card class='orderTable'>
       <el-table
           :data="tableData"
           :default-sort="{ prop: 'date', order: 'descending' }"
           style="width: 100%"
-          class = 'myform'
+          class = 'myform_order'
       >
         <el-table-column prop="Order_ID" label="订单编号" width="130" sortable/>
-        <el-table-column prop="Dispatcher_ID" label="配送编号" width="130" sortable/>
-        <el-table-column prop="Order_ID__Customer_ID" label="用户编号" width="130" sortable/>
+        <el-table-column prop="Dispatcher_ID__Dispatcher_Name" label="配送员名称" width="130" sortable/>
+        <el-table-column prop="Order_ID__orderdetail__ProductBatch_ID" label="产品批次编号" width="130" sortable/>
+        <el-table-column prop="Order_ID__Customer_ID__Customer_Name" label="用户名称" width="130" sortable/>
         <el-table-column prop="Order_ID__Order_Destination" label="用户地址" width="220" sortable/>
         <el-table-column prop="Order_ID__orderdetail__ProductBatch_ID__ProductBatch_Expiration_Time" label="预期送达时间" width="220" sortable/>
         <el-table-column prop="Vehicle_ID" label="车辆编号" width="220" sortable/>
         <el-table-column prop="Current_Position" label="实时位置" width="240" sortable/>
-        <el-table-column prop="Current_Status" label="订单状态" width="180"  sortable/>
-
+        <el-table-column prop="buttonText" label="订单状态" width="180"  sortable/>
       </el-table>
     </el-card>
   </div>
 </template>
 
 <style>
-.myform{
+.myform_order{
   height: 800px;
   overflow: auto;
   position: relative;
 }
-.all_page{
-  margin-left: 80px;
+.total_order{
+  margin-left: 14vh;
+  margin-right: 2vh;
+  margin-top: 4vh;
 }
 
 .orderTable{
   color: #111111;
-  height: 700px;
-  margin-top: 70px;
+  height: 85vh;
+  margin-top: 7vh;
   /*margin-right: 50px;*/
   margin-left: -80px;
   margin-right: 30px;
@@ -59,7 +61,15 @@ export default defineComponent({
     const getTableList = async () => {
       await axios.get('http://43.143.167.222:8020/Manager2/').then((res)=>{
         console.log(res.data);
-        tableData.value = res.data
+        tableData.value = res.data.map(item => {
+          if (item.Current_Status === 2) {
+            return {...item, buttonText: '已送达'}
+          } else if(item.Current_Status === 1){
+            return {...item, buttonText: '配送中'}
+          } else {
+            return {...item, buttonText: '即将配送'}
+          }
+        })
       })
     }
     onMounted(() => {
@@ -71,8 +81,6 @@ export default defineComponent({
       row.isActive = true;
       targetRow.buttonText='订单已完成'
     };
-
-
     return {
       tableData,
       changeStatusOfOrder,

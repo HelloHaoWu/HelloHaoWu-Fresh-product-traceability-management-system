@@ -1,63 +1,533 @@
 <template>
-  <div class = 'all_page'>
-    <div class = 'row1'>
-      <el-card class="box-card1-1">
-        <template #header>
-          <div class="card-header">
-            <span>北京顺义仓</span>
-<!--            <el-button class="button" text>Operation button</el-button>-->
-          </div>
-        </template>
-        <div id="row1-1" style="width: 500px;height:400px;"></div>
+  <div class='all_page'>
+    <div class="graph-home">
+      <el-card class='warehouse1' style="height: 300px; margin-right: 15px">
+        <div ref="echarts1" style="height: 260px; width: 100%"></div>
       </el-card>
-      <el-card class="box-card1-2">
-        <template #header>
-          <div class="card-header">
-            <span>北京昌平1仓</span>
-<!--            <el-button class="button" text>Operation button</el-button>-->
-          </div>
-        </template>
-        <div id="row1-2" style="width: 500px;height:400px;"></div>
+      <el-card class='warehouse2' style="height: 300px; margin-left: 15px; margin-right: 15px">
+        <div ref="echarts2" style="height: 260px; width: 100%"></div>
       </el-card>
-      <el-card class="box-card1-3">
-        <template #header>
-          <div class="card-header">
-            <span>天津滨海仓</span>
-<!--            <el-button class="button" text>Operation button</el-button>-->
-          </div>
-        </template>
-        <div id="row1-3" style="width: 500px;height:400px;"></div>
+      <el-card class='warehouse3' style="height: 300px; margin-left: 15px">
+        <div ref="echarts3" style="height: 260px; width: 100%"></div>
       </el-card>
     </div>
-    <el-card class="box-card2-1">
-      <div id="main" style="width: 1650px;height:400px;"></div>
+    <el-card class="line_chart">
+      <div ref="echarts_line" style="height: 350px; width: 100%"></div>
     </el-card>
-    <div class = 'row3'>
-      <div class = 'myform'>
-        <el-card class="box-card3-1">
-          <el-table
-              :data="tableData"
-              :default-sort="{ prop: 'date', order: 'descending' }"
-              style="width: 100%"
-          >
-            <el-table-column prop="订单ID" label="订单ID" sortable width="180" />
-            <el-table-column prop="订购者" label="订购者" width="180" />
-            <el-table-column prop="下单时间" label="下单时间" width="180" />
-            <el-table-column prop="订单状态" label="订单状态" width="180" />
-          </el-table>
+    <div class="foot-home">
+      <el-card class="el-card-latest">
+        <table class="table-home">
+          <thead class="thead-home">
+          <tr class="tr-home">
+            <th class="th-home-first">订单ID</th>
+            <th class="th-home">订购者</th>
+            <th class="th-home">下单时间</th>
+            <th class="th-home">订单状态</th>
+          </tr>
+          </thead>
+          <tbody class="tbody-home">
+          <tr class="tr-home" v-for="item in Lastorder" :key="item.id">
+            <td class="UserHash-home">{{ item.id }}</td>
+            <td class="tdothers-home">{{ item.order }}</td>
+            <td class="tdothers-home">{{ item.orderdate }}</td>
+            <td class="tdothers-home">
+              <!--                  {{ item.status }}-->
+              <!-- .json文件传给vue3前端的数据标题不能带"-"，即.json数据的标题不能带"-" -->
+              <el-tag style="height: 30px; width: 65px" :type="Judge_status(item.orderstatus)">{{ item.orderstatus }}</el-tag>
+            </td>
+          </tr>
+          <el-pagination layout="prev, pager, next" :current-page=this.current_page :total="total" :page-size=6 @current-change="handlePage"/>
+          </tbody>
+        </table>
+      </el-card>
+      <div class="el-card-showpicture">
+        <el-card class='pill_chart' style="margin-left: 15px;">
+          <div ref="pillecharts" style="height: 47vh; width: 100%"></div>
         </el-card>
       </div>
-      <el-card class="box-card3-2" body-style="height: 320px; display: flex; justify-content:center; align-items:center">
-<!--        <div v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</div>-->
-        <div id="barchart" style="height: 200%; width: 100%;" class="barchart"></div>
-      </el-card>
     </div>
   </div>
 </template>
 
+<script>
+import axios from "axios";
+import * as echarts from 'echarts'
+// ↓导入检测元素尺寸(resize)变化的库, 从而进行图表尺寸的自适应
+import elementResizeDetectorMaker from 'element-resize-detector'
+// ↓日期选择页
+const erd = elementResizeDetectorMaker()
+export default {
+  name: "AppHome",
+  // ↓尝试将画图方法抛出, 在外部调用
+  // provide () {
+  //   return {
+  //     loadechartsdata: this.loadechartsdata,
+  //     loadTransNode: this.loadTransNode,
+  //     loadLabelNum: this.loadLabelNum
+  //   }
+  // },
+  data() {
+    return {
+      Lastorder: [], // 最近的订单
+      echartsline: [], // 折线图
+      echart1: [], // 饼图1
+      echart2: [], // 饼图2
+      echart3: [], // 饼图3
+      current_page: 1, // 当前页
+      total: 0, // 总信息条数
+      pageData: {
+        page: 1,
+        limit: 6
+      },
+      pillar: [] // 柱状图
+    }
+  },
+  created() {
+    this.pillload()
+    this.loadorders()
+    this.loadlinedata()
+    this.loadpiedata1()
+    this.loadpiedata2()
+    this.loadpiedata3()
+  },
+  methods: {
+    pillload() {
+      axios
+          .get('http://43.143.167.222:8020/form1/')
+          .then(res => {
+            this.pillar = res.data
+            const pillardata = this.pillar
+            const echartpill = echarts.init(this.$refs.pillecharts)
+            var pilloption = {
+              title: {
+                text: '各类产品当前总库存量',
+                left: 'center' // 设置标题居中
+              },
+              xAxis: {
+                type: 'category',
+                data: [pillardata[0]['生鲜种类'], pillardata[1]['生鲜种类'], pillardata[2]['生鲜种类'], pillardata[3]['生鲜种类'], pillardata[4]['生鲜种类']]
+              },
+              yAxis: {
+                type: 'value'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              series: [
+                {
+                  data: [
+                    {
+                      value: pillardata[0]['库存总量'],
+                      itemStyle: {
+                        color: '#91cc75'
+                      }
+                    },
+                    {
+                      value: pillardata[1]['库存总量'],
+                      itemStyle: {
+                        color: '#5470c6'
+                      }
+                    },
+                    {
+                      value: pillardata[2]['库存总量'],
+                      itemStyle: {
+                        color: '#fac858'
+                      }
+                    },
+                    {
+                      value: pillardata[3]['库存总量'],
+                      itemStyle: {
+                        color: '#fc8452'
+                      }
+                    },
+                    {
+                      value: pillardata[4]['库存总量'],
+                      itemStyle: {
+                        color: '#ee6666'
+                      }
+                    }],
+                  type: 'bar'
+                }
+              ]
+            }
+            echartpill.setOption(pilloption)
+            erd.listenTo(document.querySelector(".pill_chart"), () => {
+              echartpill.resize()
+            })
+          })
+    },
+    handlePage(val) {
+      console.log(val)
+      this.pageData.page = val
+      this.current_page = val
+      this.loadorders()
+    },
+    Judge_status(status) { // 渲染状态色
+      if (status === "未发货") {
+        return 'warning'
+      } else if (status === "配送中") {
+        return ''
+      } else {
+        return 'success'
+      }
+    },
+    loadorders() {
+      axios
+          .get('http://43.143.167.222:8020/form2/')
+          .then(res => {
+            this.total = res.data.length || 0
+            console.log(this.list)
+            // 只显示前6个
+            this.Lastorder = []
+            for(let i=(this.pageData.page-1)*this.pageData.limit, j=0; j < this.pageData.limit; i++) {
+              this.Lastorder[j] = res.data[i];
+              j++;
+              if (i === res.data.length - 1) {
+                break
+              }
+            }
+          })
+    },
+    loadlinedata() {
+      axios
+          .get('http://43.143.167.222:8020/Linechart/')
+          .then(res => {
+            this.echartsline = res.data
+            const linedata = this.echartsline
+            const echartline = echarts.init(this.$refs.echarts_line)
+            var lineoption = {
+              title: {
+                text: '近4日各类产品销量趋势'
+              },
+              tooltip: {
+                trigger: 'axis'
+              },
+              legend: {
+                data: linedata['legend']
+              },
+              grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+              },
+              toolbox: {
+                feature: {
+                  saveAsImage: {}
+                }
+              },
+              xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: linedata['xAxis']
+              },
+              yAxis: {
+                type: 'value'
+              },
+              series: [
+                {
+                  name: linedata['line1']['name'],
+                  type: 'line',
+                  stack: 'Total',
+                  data: linedata['line1']['data']
+                },
+                {
+                  name: linedata['line2']['name'],
+                  type: 'line',
+                  stack: 'Total',
+                  data: linedata['line2']['data']
+                },
+                {
+                  name: linedata['line3']['name'],
+                  type: 'line',
+                  stack: 'Total',
+                  data: linedata['line3']['data']
+                },
+                {
+                  name: linedata['line4']['name'],
+                  type: 'line',
+                  stack: 'Total',
+                  data: linedata['line4']['data']
+                },
+                {
+                  name: linedata['line5']['name'],
+                  type: 'line',
+                  stack: 'Total',
+                  data: linedata['line5']['data']
+                }
+              ]
+            }
+            echartline.setOption(lineoption)
+            erd.listenTo(document.querySelector(".line_chart"), () => {
+              echartline.resize()
+            })
+          })
+    },
+    loadpiedata1() {
+      axios
+          .get('http://43.143.167.222:8020/Piedata_sub/')
+          .then(res => {
+            this.echart1 = res.data['piedata1']
+            const piedata1 = this.echart1
+            const echarts1 = echarts.init(this.$refs.echarts1)
+            var echart1option = {
+              title: {
+                text: '北京顺义仓储'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              legend: {
+                orient: 'vertical',
+                top: 50,
+                right: 5
+              },
+              color: ['rgb(228, 153, 182)', 'rgb(216, 122, 128)', 'rgb(255, 185, 128)', 'rgb(182, 162, 222)'],
+              series: [
+                {
+                  name: '该类商品仓储量',
+                  type: 'pie',
+                  radius: ['40%', '70%'],
+                  avoidLabelOverlap: true,
+                  itemStyle: {
+                    borderRadius: 6,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                  },
+                  center: ['38%', '58%'],
+                  data: [
+                    // ↓此处第一条"arknet_market"有数据造假, 请在真实部署时修改
+                    { value: piedata1[0]['value'], name: piedata1[0]['name'] },
+                    { value: piedata1[1]['value'], name: piedata1[1]['name'] },
+                    { value: piedata1[2]['value'], name: piedata1[2]['name'] },
+                    { value: piedata1[3]['value'], name: piedata1[3]['name'] },
+                  ],
+                  grid: {
+                    top: '12%',
+                    left: '-0.1%',
+                    // right: '4%',
+                    bottom: '15%',
+                    containLabel: true
+                  },
+                }
+              ]
+            }
+            echarts1.setOption(echart1option)
+            erd.listenTo(document.querySelector(".warehouse1"), () => {
+              echarts1.resize()
+            })
+          })
+    },
+    loadpiedata2() {
+      axios
+          .get('http://43.143.167.222:8020/Piedata_sub/')
+          .then(res => {
+            this.echart2 = res.data['piedata2']
+            const piedata2 = this.echart2
+            const echarts2 = echarts.init(this.$refs.echarts2)
+            var echart2option = {
+              title: {
+                text: '北京昌平1仓储'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              legend: {
+                orient: 'vertical',
+                top: 50,
+                right: 5
+              },
+              color: ['rgb(228, 153, 182)', 'rgb(216, 122, 128)', 'rgb(255, 185, 128)'],
+              series: [
+                {
+                  name: '该类商品仓储量',
+                  type: 'pie',
+                  radius: ['40%', '70%'],
+                  avoidLabelOverlap: true,
+                  itemStyle: {
+                    borderRadius: 6,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                  },
+                  center: ['38%', '58%'],
+                  data: [
+                    // ↓此处第一条"arknet_market"有数据造假, 请在真实部署时修改
+                    { value: piedata2[0]['value'], name: piedata2[0]['name'] },
+                    { value: piedata2[1]['value'], name: piedata2[1]['name'] },
+                    { value: piedata2[2]['value'], name: piedata2[2]['name'] },
+                  ],
+                  grid: {
+                    top: '12%',
+                    left: '-0.1%',
+                    // right: '4%',
+                    bottom: '15%',
+                    containLabel: true
+                  },
+                }
+              ]
+            }
+            echarts2.setOption(echart2option)
+            erd.listenTo(document.querySelector(".warehouse2"), () => {
+              echarts2.resize()
+            })
+          })
+    },
+    loadpiedata3() { // 已经改完
+      axios
+          .get('http://43.143.167.222:8020/Piedata_sub/')
+          .then(res => {
+            this.echart3 = res.data['piedata3']
+            const piedata3 = this.echart3
+            const echarts3 = echarts.init(this.$refs.echarts3)
+            var echart3option = {
+              title: {
+                text: '天津滨海仓储'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              legend: {
+                orient: 'vertical',
+                top: 50,
+                right: 5
+              },
+              color: ['rgb(228, 153, 182)', 'rgb(216, 122, 128)', 'rgb(255, 185, 128)'],
+              series: [
+                {
+                  name: '该类商品仓储量',
+                  type: 'pie',
+                  radius: ['40%', '70%'],
+                  avoidLabelOverlap: true,
+                  itemStyle: {
+                    borderRadius: 6,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                  },
+                  center: ['38%', '58%'],
+                  data: [
+                    // ↓此处第一条"arknet_market"有数据造假, 请在真实部署时修改
+                    { value: piedata3[0]['value'], name: piedata3[0]['name'] },
+                    { value: piedata3[1]['value'], name: piedata3[1]['name'] },
+                    { value: piedata3[2]['value'], name: piedata3[2]['name'] },
+                  ],
+                  grid: {
+                    top: '12%',
+                    left: '-0.1%',
+                    // right: '4%',
+                    bottom: '15%',
+                    containLabel: true
+                  },
+                }
+              ]
+            }
+            echarts3.setOption(echart3option)
+            erd.listenTo(document.querySelector(".warehouse3"), () => {
+              echarts3.resize()
+            })
+          })
+    },
+  },
+}
+</script>
+
+<style lang="less">
+.all_page{
+  /*display:flex;*/
+  margin-left: 6vh;
+  margin-right: 6vh;
+}
+.graph-home {
+  margin-top: 4vh;
+  display: flex;
+  justify-content: space-between;
+  .el-card {
+    width: 32%;
+  }
+}
+.line_chart {
+  margin-top: 3vh;
+  margin-right: 6vh;
+  width: 100%;
+}
+.foot-home {
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  width: 100%;
+  display: flex;
+  height: 48vh;
+  max-height: 48vh;
+  .el-card-latest {
+    width: 60%;
+    //height: 50vh;
+    text-align: center;
+    font-size: 14px;
+  }
+  .el-card-showpicture {
+    width: 38.3%;
+    .pill_chart {
+      height: 100%;
+    }
+  }
+}
+.table-home {
+  align-content: center;
+  // ↓表示表格的两边框合并为一条
+  border-collapse: collapse;
+  width: 100%;
+  // ↓将界面设置为无边框
+  border: none;
+}
+.th-home-first {
+  // ↓将界面设置为无边框
+  border: none;
+  // ↓将界面设置为仅有底边框
+  border-bottom: 1px solid #cccccc;
+  // ↓水平居中
+  text-align: left;
+  padding: 8px 8px 8px 16px; // 上 右 下 左
+  background-color: white;
+  color: #666666;
+  height: 45px;
+  width: 10%;
+}
+.th-home {
+  // ↓将界面设置为无边框
+  border: none;
+  // ↓将界面设置为仅有底边框
+  border-bottom: 1px solid #cccccc;
+  // ↓水平居中
+  text-align: center;
+  padding: 8px;
+  background-color: white;
+  color: #666666;
+  height: 45px;
+}
+.tdothers-home {
+  // ↓将界面设置为无边框
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  text-align: center;
+  padding: 12px;
+}
+td.UserHash-home {
+  // ↓将界面设置为无边框
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  padding: 0 0 0 20px; // 上 右 下 左
+  // ↓左对齐
+  text-align: left;
+  // ↓让Hash值换行
+  word-break: break-all;
+  width: 10%;
+}
+// ↓鼠标悬停时具有表格线
+tr:hover {
+  background-color: #f5f5f5;
+}
 
 
-<style>
+
 .myform{
   height: 400px;
   overflow: auto;
@@ -66,10 +536,7 @@
 .barchart{
   margin-top: 20px;
 }
-.all_page{
-  /*display:flex;*/
-  margin-left: 50px;
-}
+
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -101,12 +568,6 @@
   flex-basis: 33%;
   margin-left: 10px;
 }
-.box-card2-1 {
-  margin-top: 30px;
-  width : 1600px;
-  margin-left: -60px;
-  margin-right: 1000px;
-}
 
 .row3{
   display:flex;
@@ -133,302 +594,3 @@
 }
 
 </style>
-
-<script type="ts">
-import * as echarts from 'echarts';
-import {ref, onMounted, defineComponent, reactive} from 'vue'
-import axios from "axios";
-// import {log} from "echarts/types/src/util/log";
-
-export default defineComponent({
-  // created() {
-  //   this.getTableList();
-  // },
-  mounted() {
-    const chartIds = ['row1-1', 'row1-2', 'row1-3'];
-    // console.log(option1)
-    for (let i = 0;i <= chartIds.length - 1;i++)
-    {
-      let id = chartIds[i];
-      let tempchart = echarts.init(document.getElementById(id));
-
-      // console.log(optionIds[i])
-      tempchart.setOption(this.getOption());
-      tempchart.on('legendselectchanged', (params) => {
-        const {selected} = params;
-        this.selectedData = selected;
-        if (!Object.keys(this.selectedData).length) {
-          this.selectedData = {};
-        }
-        tempchart.setOption(this.getOption());
-      });
-    }
-  },
-
-  data() {
-    const getTableList = async () => {
-      //饼图
-      await axios.get('http://43.143.167.222:8020/Piedata_sub/').then((res) => {
-        this.option1.series[0].data = res.data.piedata1
-        this.option2.series[0].data = res.data.piedata2;
-        this.option3.series[0].data = res.data.piedata3;
-        const chartIds = ['row1-1', 'row1-2', 'row1-3'];
-        for (let i = 0; i < chartIds.length; i++) {
-          const id = chartIds[i];
-          const tempchart = echarts.init(document.getElementById(id));
-          // console.log(this[`option${i+1}`])
-          tempchart.setOption(this[`option${i + 1}`]);
-        }
-      })
-      //折线图
-      await axios.get('http://43.143.167.222:8020/Linechart/').then((res) => {
-        // option0.value = res.data.option0;console.log(res.data.option0)
-        //   console.log(res.data)
-        this.option0.legend.data = res.data.legend
-        this.option0.xAxis.data = res.data.xAxis
-        this.option0.legend.data = res.data.legend
-
-        this.option0.series[0].name = res.data.line1.name
-        this.option0.series[0].data = res.data.line1.data
-        this.option0.series[1].name = res.data.line2.name
-        this.option0.series[1].data = res.data.line2.data
-        this.option0.series[2].name = res.data.line3.name
-        this.option0.series[2].data = res.data.line3.data
-        this.option0.series[3].name = res.data.line4.name
-        this.option0.series[3].data = res.data.line4.data
-        this.option0.series[4].name = res.data.line5.name
-        this.option0.series[4].data = res.data.line5.data
-
-        let myChart = echarts.init(document.getElementById('main'));//折线图
-        myChart.setOption(this.option0);
-      })
-      //柱状图
-      await axios.get('http://43.143.167.222:8020/form1/').then((res) => {
-        // console.log(res.data[0].库存总量)
-        this.option.xAxis.data[0] = res.data[0].生鲜种类
-        this.option.series[0].data[0].value = res.data[0].库存总量
-        this.option.xAxis.data[1] = res.data[1].生鲜种类
-        this.option.series[0].data[1].value = res.data[1].库存总量
-        this.option.xAxis.data[2] = res.data[2].生鲜种类
-        this.option.series[0].data[2].value = res.data[2].库存总量
-        this.option.xAxis.data[3] = res.data[3].生鲜种类
-        this.option.series[0].data[3].value = res.data[3].库存总量
-        this.option.xAxis.data[4] = res.data[4].生鲜种类
-        this.option.series[0].data[4].value = res.data[4].库存总量
-
-        let myChart = echarts.init(document.getElementById('barchart'));//柱状图
-        myChart.setOption(this.option);
-      })
-
-      //form
-      await axios.get('http://43.143.167.222:8020/form2/').then((res) => {
-        this.tableData = res.data
-        console.log(this.tabledata[0])
-      })
-    }
-    onMounted(() => {
-      getTableList()
-    });
-    return {
-
-      option : {
-        title: {
-          text: 'my echarts'
-        },
-        tooltip: {},
-        xAxis: {
-          data: [],
-          name: '', // 横坐标名称
-          nameLocation: "middle" // 横坐标名称位置
-        },
-        yAxis: {
-          name: '', // 纵坐标名称
-          nameLocation: "middle", // 纵坐标名称位置
-        },
-        series: [
-          {
-            name: '现存量',
-            data: [
-                { value: 0, itemStyle: { color: '#007bff' } },
-                { value: 0, itemStyle: { color: '#dc3545' } },
-                { value: 0, itemStyle: { color: '#6c757d' } },
-                { value: 0, itemStyle: { color: '#28a745' } },
-                { value: 0, itemStyle: { color: '#343a40' } }
-            ],
-            type: 'bar',
-            color: '#007bff'
-          }
-        ],
-
-      },
-      option0 : {
-        "title": {
-          "text": "近五天销量"
-        },
-        "tooltip": {},
-        "legend": {
-          "data": []
-        },
-        "xAxis": {
-          "data": [
-          ]
-        },
-        "yAxis": {},
-        "series": [
-          {
-            "name": "肉类",
-            "data": [
-
-            ],
-            "type": "line",
-            "stack": "x",
-            "itemStyle": {
-              "color": "red"
-            },
-            "emphasis": {
-              "itemStyle": {
-                "color": "red"
-              }
-            }
-          },
-          {
-            "name": "蔬菜",
-            "data": [
-
-            ],
-            "type": "line",
-            "stack": "x",
-            "itemStyle": {
-              "color": "green"
-            },
-            "emphasis": {
-              "itemStyle": {
-                "color": "green"
-              }
-            }
-          },
-          {
-            "name": "奶类",
-            "data": [
-
-            ],
-            "type": "line",
-            "stack": "x",
-            "itemStyle": {
-              "color": "grey"
-            },
-            "emphasis": {
-              "itemStyle": {
-                "color": "grey"
-              }
-            }
-          },
-          {
-            "name": "水果",
-            "data": [
-
-            ],
-            "type": "line",
-            "stack": "x",
-            "itemStyle": {
-              "color": "blue"
-            },
-            "emphasis": {
-              "itemStyle": {
-                "color": "blue"
-              }
-            }
-          },
-          {
-            "name": "其他",
-            "data": [
-            ],
-            "type": "line",
-            "stack": "x",
-            "itemStyle": {
-              "color": "black"
-            },
-            "emphasis": {
-              "itemStyle": {
-                "color": "black"
-              }
-            }
-          }
-        ]
-      },
-      option1: ref({
-        "tooltip": {},
-        "series": [{
-          "type": "pie",
-          "data": [
-          ],
-        }]
-      }),
-      option2: ref({
-        "tooltip": {},
-        "series": [{
-          "type": "pie",
-          "data": [],
-        }]
-      }),
-      option3: ref({
-        "tooltip": {},
-        "series": [{
-          "type": "pie",
-          "data": [],
-        }]
-      }),
-      selectedData: {
-        '肉类': true,
-        '蔬菜': true,
-        '水果': true,
-        '奶类': true,
-      },
-      tabledata:ref([])
-    }
-
-  },
-  methods: {
-    getOption() {
-      const pieData = [
-        {
-          value: this.selectedData['肉类']>0 ? this.selectedData['肉类'] : 0,
-          name: '肉类'
-        },
-        {
-          value: this.selectedData['水果']>0 ? this.selectedData['水果'] : 0,
-          name: '蛋类'
-        },
-        {
-          value: this.selectedData['奶类']>0 ? this.selectedData['奶类'] : 0,
-          name: '奶类'
-        },
-        {
-          value: this.selectedData['蔬菜']>0 ? this.selectedData['蔬菜'] : 0,
-          name: '蔬菜'
-        }
-      ];
-
-      return {
-        series: [
-          {
-            type: 'pie',
-            data: pieData,
-            itemStyle: {
-              emphasis: {
-                scale: true
-              }
-            }
-          }
-        ],
-        legend: {
-          type: 'plain',
-          selectedMode: 'multiple',
-          selected: this.selectedData,
-          data: ['肉类','水果','奶类','蔬菜']
-        }
-      };
-    }
-  }
-})
-</script>

@@ -1,17 +1,17 @@
 <template>
-  <div class = 'all_page'>
-    <div class = 'stockInform'><strong>库存desu</strong></div>
-    <el-card class = 'stockTable'>
+  <div class='total_ware'>
+    <div class='stockInform'><strong>库存总览</strong></div>
+    <el-card class='stockTable'>
       <el-table
           :data="tableData"
           :default-sort="{ prop: 'date', order: 'descending' }"
           style="width: 100%"
-          class = 'myform'
+          class = 'myform_ware'
       >
         <el-table-column prop="ProductBatch_ID" label="批次编号" width="180" sortable/>
-        <el-table-column prop="Product_ID" label="产品编号" width="180" sortable/>
-        <el-table-column prop="WareHouse_ID" label="仓库编号" width="180" sortable/>
-        <el-table-column prop="Supplier_ID" label="供应商编号" width="180" sortable/>
+        <el-table-column prop="Product_ID__Product_Name" label="产品名称" width="180" sortable/>
+        <el-table-column prop="WareHouse_ID__WareHouse_Name" label="仓库名称" width="180" sortable/>
+        <el-table-column prop="Supplier_ID__Supplier_Name" label="供应商名称" width="180" sortable/>
         <el-table-column prop="Product_ID__Product_Type" label="种类" width="180" sortable
                          :filters="[
                               { text: '蔬菜', value: '蔬菜' },
@@ -22,25 +22,27 @@
                          :filter-method="filterHandler"/>
         <el-table-column prop="ProductBatch_Supply_Amount" label="入库量" width="180" sortable/>
         <el-table-column prop="ProductBatch_Warehousing_Time" label="入库时间" width="180" sortable/>
-        <el-table-column prop="ProductBatch_Expiration_Time" label="到期时间" width="180" sortable/>
+        <el-table-column prop="ProductBatch_Expiration_Time" label="过期时间" width="180" sortable/>
       </el-table>
     </el-card>
   </div>
 </template>
 
 <style>
-.myform{
+.myform_ware{
   height: 800px;
   overflow: auto;
   position: relative;
 }
-.all_page{
-  margin-left: 80px;
+.total_ware{
+  margin-left: 14vh;
+  margin-right: 2vh;
+  margin-top: 4vh;
 }
 .stockTable{
   color: #111111;
-  height: 700px;
-  margin-top: 70px;
+  height: 85vh;
+  margin-top: 7vh;
   /*margin-right: 50px;*/
   margin-left: -80px;
   margin-right: 30px;
@@ -64,7 +66,7 @@ export default defineComponent({
     const getTableList = async () => {
       await axios.get('http://43.143.167.222:8020/Manager3/').then((res)=>{
         console.log(res.data);
-        tableData.value = res.data
+        tableData.value = res.data;
       })
     }
     onMounted(() => {
@@ -76,7 +78,6 @@ export default defineComponent({
       row.isActive = true;
       targetRow.buttonText='订单已完成'
     };
-
 
     return {
       tableData,

@@ -23,7 +23,7 @@
               <ion-icon name="analytics-outline" class="nav_icon"></ion-icon>
               <span class="nav__name">配送</span>
             </router-link>
-            <div  class="nav_link collapse">
+            <div class="nav_link collapse" v-if="show_managerpage()">
               <ion-icon name="layers-outline" class="nav_icon"></ion-icon>
               <span class="nav__name">管理</span>
               <ion-icon id="collapselink" name="chevron-down-outline" class="collapse__link"></ion-icon>
@@ -114,8 +114,8 @@ export default {
     show_dispatcherpage() {
       return this.user === 'dispatcher' || this.user === 'manager';
     },
-    show_supplierpage() {
-      return this.user === 'supplier' || this.user === 'manager';
+    show_managerpage() {
+      return this.user === 'manager';
     }
   }
 }
