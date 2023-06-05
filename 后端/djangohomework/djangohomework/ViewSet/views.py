@@ -112,6 +112,7 @@ class Info4Delivery(APIView):
             if order.Current_Status == 0:
                 order.Current_Status = 1
             elif order.Current_Status == 1:
+                order.Completion_Time = datetime.now()
                 order.Current_Status = 2
             else:
                 order.Current_Status = 0
@@ -131,9 +132,9 @@ class Info4Manager2(APIView):
 
         if targetOrder:
             datalist = Delivery.objects.filter(Order_ID=targetOrder).values(
-                'Dispatcher_ID',
+                'Dispatcher_ID__Dispatcher_Name',
                 'Order_ID',
-                'Order_ID__Customer_ID',
+                'Order_ID__Customer_ID__Customer_Name',
                 'Order_ID__Order_Destination',
                 'Order_ID__orderdetail__ProductBatch_ID__ProductBatch_Expiration_Time',
                 'Latest_Delivery_Time',
@@ -144,9 +145,9 @@ class Info4Manager2(APIView):
             )
         else:
             datalist = Delivery.objects.filter().values(
-                'Dispatcher_ID',
+                'Dispatcher_ID__Dispatcher_Name',
                 'Order_ID',
-                'Order_ID__Customer_ID',
+                'Order_ID__Customer_ID__Customer_Name',
                 'Order_ID__Order_Destination',
                 'Order_ID__orderdetail__ProductBatch_ID__ProductBatch_Expiration_Time',
                 'Latest_Delivery_Time',
@@ -170,9 +171,9 @@ class Info4Manager3(APIView):
         if targetPB:
             datalist = ProductBatch.objects.filter(ProductBatch_ID=targetPB).values(
                 'ProductBatch_ID',
-                'Product_ID',
-                'WareHouse_ID',
-                'Supplier_ID',
+                'Product_ID__Product_Name',
+                'WareHouse_ID__WareHouse_Name',
+                'Supplier_ID__Supplier_Name',
                 'Product_ID__Product_Type',
                 'ProductBatch_Supply_Amount',
                 'ProductBatch_Warehousing_Time',
@@ -181,9 +182,9 @@ class Info4Manager3(APIView):
         else:
             datalist = ProductBatch.objects.filter().values(
                 'ProductBatch_ID',
-                'Product_ID',
-                'WareHouse_ID',
-                'Supplier_ID',
+                'Product_ID__Product_Name',
+                'WareHouse_ID__WareHouse_Name',
+                'Supplier_ID__Supplier_Name',
                 'Product_ID__Product_Type',
                 'ProductBatch_Supply_Amount',
                 'ProductBatch_Warehousing_Time',
