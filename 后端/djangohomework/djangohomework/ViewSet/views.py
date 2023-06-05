@@ -48,8 +48,10 @@ class Info4Customer(APIView):
                 'orderdetail__ProductBatch_ID__Supplier_ID',
                 'orderdetail__ProductBatch_ID__Supplier_ID__Supplier_Name',
                 'delivery__Dispatcher_ID',
+                'delivery__Dispatcher_ID__Dispatcher_Name',
                 'delivery__Dispatcher_ID__Dispatcher_Tel',
                 'orderdetail__ProductBatch_ID__WareHouse_ID',
+                'orderdetail__ProductBatch_ID__WareHouse_ID__WareHouse_Name'
             )
 
         else:
@@ -64,8 +66,10 @@ class Info4Customer(APIView):
                 'orderdetail__ProductBatch_ID__Supplier_ID',
                 'orderdetail__ProductBatch_ID__Supplier_ID__Supplier_Name',
                 'delivery__Dispatcher_ID',
+                'delivery__Dispatcher_ID__Dispatcher_Name',
                 'delivery__Dispatcher_ID__Dispatcher_Tel',
                 'orderdetail__ProductBatch_ID__WareHouse_ID',
+                'orderdetail__ProductBatch_ID__WareHouse_ID__WareHouse_Name'
             )
 
         return Response(datalist)
